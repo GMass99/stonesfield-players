@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's On — Stonesfield Players</title>
+  <meta name="description" content="Upcoming shows and events from the Stonesfield Players amateur drama group.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <nav class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.jpg" alt="Stonesfield Players logo">
+        <span>Stonesfield Players</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html" class="active">What's On</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <p class="section-subtitle">What's On</p>
+      <h1>Upcoming Events</h1>
+      <p>See what we've got coming up. Book early — our shows tend to sell out!</p>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section>
+    <div class="container">
+
+      <!-- EVENT: Mercy of Sisters -->
+      <div class="event-card">
+        <div class="event-date-block">
+          <div class="month">June</div>
+          <div class="day">TBC</div>
+          <div class="year-text">2026</div>
+        </div>
+        <div class="event-info">
+          <h3>Mercy of Sisters</h3>
+          <div class="event-meta">
+            <span>&#128205; Stonesfield Village Hall</span>
+            <span>&#128336; 7:30pm (TBC)</span>
+          </div>
+          <p>Our next production is coming to the Village Hall in late June 2026. More details — including exact dates, cast information and ticket links — will be announced soon. Watch this space!</p>
+          <p style="color:var(--accent);font-weight:600;font-size:0.9rem;">&#9733; Tickets coming soon</p>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: More events -->
+      <div style="text-align:center;padding:4rem 0 2rem;">
+        <p style="color:var(--grey-mid);font-size:0.95rem;">More events will be announced throughout the year.<br>Follow us on Instagram to stay up to date.</p>
+        <a href="https://www.instagram.com/stonesfieldplayers/" target="_blank" rel="noopener" class="btn" style="margin-top:1.5rem;">Follow on Instagram</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAST EVENTS BANNER -->
+  <section class="next-show">
+    <div class="container">
+      <p class="section-subtitle">Missed a Show?</p>
+      <h2>Past Productions</h2>
+      <p class="show-details">See our archive of past performances on the About Us page.</p>
+      <a href="about.html#past" class="btn">View Past Productions</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Want to Be in the Next Show?</h2>
+      <p>We're always looking for actors, directors, stage crew, lighting, sound — you name it. No experience necessary.</p>
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="images/logo.jpg" alt="Stonesfield Players">
+            <span>Stonesfield Players</span>
+          </div>
+          <p>An amateur drama group based in Stonesfield, West Oxfordshire. Performing plays, pantomimes and original drama since 1953.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Pages</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">What's On</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/stonesfieldplayers/" target="_blank" rel="noopener" aria-label="Instagram">&#128247;</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Stonesfield Players. All rights reserved.</span>
+        <span>Stonesfield Village Hall, OX29 8HA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

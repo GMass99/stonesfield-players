@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Stonesfield Players</title>
+  <meta name="description" content="Get in touch with the Stonesfield Players. Join our drama group or find out about upcoming shows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <nav class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.jpg" alt="Stonesfield Players logo">
+        <span>Stonesfield Players</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">What's On</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <p class="section-subtitle">Say Hello</p>
+      <h1>Get in Touch</h1>
+      <p>Whether you want to join us, book tickets, or just ask a question — we'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Contact Details</h3>
+
+          <div class="contact-item">
+            <div class="icon">&#9993;</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:thestonesfieldplayers@gmail.com">thestonesfieldplayers@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon">&#128205;</div>
+            <div>
+              <h4>Venue</h4>
+              <p>Stonesfield Village Hall<br>Stonesfield, Oxfordshire<br>OX29 8HA</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="icon">&#128247;</div>
+            <div>
+              <h4>Instagram</h4>
+              <a href="https://www.instagram.com/stonesfieldplayers/" target="_blank" rel="noopener">@stonesfieldplayers</a>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem;padding:2rem;background:var(--off-white);">
+            <h4 style="font-family:var(--font-heading);font-size:1.1rem;margin-bottom:0.75rem;">Want to Join?</h4>
+            <p style="color:var(--grey-dark);font-size:0.9rem;margin-bottom:0;">We're always welcoming new members — whether you want to act, direct, build sets, manage costumes, do lighting, or just help out on show nights. <strong>No experience necessary.</strong> Just drop us an email or fill in the form and we'll be in touch.</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h3>Send Us a Message</h3>
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">I'm Interested In</label>
+              <select id="subject" name="subject">
+                <option value="general">General Enquiry</option>
+                <option value="joining">Joining the Group</option>
+                <option value="tickets">Ticket Information</option>
+                <option value="press">Press / Media</option>
+                <option value="other">Something Else</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section">
+    <div>
+      <p>&#128205; Map of Stonesfield Village Hall</p>
+      <p style="font-size:0.8rem;margin-top:0.5rem;">Embed a Google Map here, or replace with a static image.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="images/logo.jpg" alt="Stonesfield Players">
+            <span>Stonesfield Players</span>
+          </div>
+          <p>An amateur drama group based in Stonesfield, West Oxfordshire. Performing plays, pantomimes and original drama since 1953.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Pages</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">What's On</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/stonesfieldplayers/" target="_blank" rel="noopener" aria-label="Instagram">&#128247;</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Stonesfield Players. All rights reserved.</span>
+        <span>Stonesfield Village Hall, OX29 8HA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

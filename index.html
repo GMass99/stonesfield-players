@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stonesfield Players — Village Theatre Since 1953</title>
+  <meta name="description" content="The Stonesfield Players are an amateur drama group based in Stonesfield, West Oxfordshire. Performing everything from Shakespeare to pantomime since 1953.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <nav class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.jpg" alt="Stonesfield Players logo">
+        <span>Stonesfield Players</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">What's On</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content container">
+      <img src="images/logo.jpg" alt="Stonesfield Players" class="hero-logo">
+      <h1>Village Theatre,<br>Timeless Stories</h1>
+      <p>Bringing drama to the heart of Stonesfield since 1953. From Shakespeare to pantomime, we've been entertaining West Oxfordshire for over 70 years.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="events.html" class="btn btn-primary">What's On</a>
+        <a href="contact.html" class="btn">Join Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT SHOW -->
+  <section class="next-show">
+    <div class="container">
+      <p class="section-subtitle">Coming Soon</p>
+      <h2>Mercy of Sisters</h2>
+      <p class="show-details">Late June 2026 &middot; Stonesfield Village Hall, OX29 8HA</p>
+      <a href="events.html" class="btn">Find Out More</a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <p class="section-subtitle">Why We Do It</p>
+      <h2>More Than Just a Drama Group</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#127917;</div>
+          <h3>70+ Years of Theatre</h3>
+          <p>Founded in 1953, we've produced everything from farce to Shakespeare, from pantomime to original drama — and we're still going strong.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#11088;</div>
+          <h3>Award-Winning</h3>
+          <p>We've successfully entered local drama competitions, winning both junior and senior categories. Several of our young members have gone on to professional careers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#129309;</div>
+          <h3>Everyone Welcome</h3>
+          <p>Whether you want to act, direct, build sets, do lighting, or just help out — there's always room for new members. No experience needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Get Involved</h2>
+      <p>We're always looking for new members — on stage and behind the scenes. Come and be part of our next production.</p>
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="images/logo.jpg" alt="Stonesfield Players">
+            <span>Stonesfield Players</span>
+          </div>
+          <p>An amateur drama group based in Stonesfield, West Oxfordshire. Performing plays, pantomimes and original drama since 1953.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Pages</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">What's On</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.instagram.com/stonesfieldplayers/" target="_blank" rel="noopener" aria-label="Instagram">&#128247;</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Stonesfield Players. All rights reserved.</span>
+        <span>Stonesfield Village Hall, OX29 8HA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Header shadow on scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>
