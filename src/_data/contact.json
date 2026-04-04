@@ -10,8 +10,6 @@
     "address": "Stonesfield, Oxfordshire",
     "postcode": "OX29 8HA"
   },
-  "instagram_url": "https://www.instagram.com/stonesfieldplayers/",
-  "instagram_handle": "@stonesfieldplayers",
   "join_box": {
     "heading": "Want to Join?",
     "text": "We're always welcoming new members \u2014 whether you want to act, direct, build sets, manage costumes, do lighting, or just help out on show nights. <strong>No experience necessary.</strong> Just drop us an email and we'll be in touch."
@@ -23,5 +21,8 @@
     "Press / Media",
     "Something Else"
   ],
-  "map_embed_url": ""
+  "gallery": {
+    "heading": "From the Stage",
+    "photos": []
+  }
 }

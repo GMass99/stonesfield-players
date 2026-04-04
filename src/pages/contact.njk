@@ -40,13 +40,15 @@ permalink: /contact/
           </div>
         </div>
 
+        {% for social in site.social_links %}
         <div class="contact-item">
-          <div class="icon">&#128247;</div>
+          <div class="icon">{{ social.icon }}</div>
           <div>
-            <h4>Instagram</h4>
-            <a href="{{ contact.instagram_url }}" target="_blank" rel="noopener">{{ contact.instagram_handle }}</a>
+            <h4>{{ social.platform }}</h4>
+            <a href="{{ social.url }}" target="_blank" rel="noopener">{{ social.handle }}</a>
           </div>
         </div>
+        {% endfor %}
 
         <div style="margin-top:2rem;padding:2rem;background:var(--off-white);">
           <h4 style="font-family:var(--font-heading);font-size:1.1rem;margin-bottom:0.75rem;">{{ contact.join_box.heading }}</h4>
@@ -86,14 +88,23 @@ permalink: /contact/
   </div>
 </section>
 
-<!-- MAP -->
-<section class="map-section">
-  <div>
-    {% if contact.map_embed_url %}
-      <iframe src="{{ contact.map_embed_url }}" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+<!-- PHOTO GALLERY -->
+<section style="background:var(--off-white);">
+  <div class="container" style="text-align:center;">
+    <h2>{{ contact.gallery.heading }}</h2>
+    {% if contact.gallery.photos.length %}
+    <div class="gallery-grid">
+      {% for photo in contact.gallery.photos %}
+      <div class="gallery-item">
+        <img src="{{ photo.image }}" alt="{{ photo.caption }}" loading="lazy">
+        {% if photo.caption %}
+          <p class="gallery-caption">{{ photo.caption }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
     {% else %}
-      <p>&#128205; Map of {{ contact.venue.name }}</p>
-      <p style="font-size:0.8rem;margin-top:0.5rem;">Embed a Google Map here, or replace with a static image.</p>
+    <p style="color:var(--grey-mid);margin-top:1.5rem;">Photos coming soon — check back after our next production!</p>
     {% endif %}
   </div>
 </section>

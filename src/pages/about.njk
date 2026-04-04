@@ -83,6 +83,9 @@ permalink: /about/
     <div class="productions-grid">
       {% for prod in about.productions %}
       <div class="production-card">
+        {% if prod.image %}
+          <img src="{{ prod.image }}" alt="{{ prod.title }}" style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:1.25rem;">
+        {% endif %}
         <div class="year">{{ prod.date_label }}</div>
         <h3>{{ prod.title }}</h3>
         <p>{{ prod.description }}</p>

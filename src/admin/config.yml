@@ -137,6 +137,7 @@ collections:
               - { name: "date_label", label: "Date / Period", widget: "string", hint: "e.g. 'November 2025' or 'Pantomime'" }
               - { name: "title", label: "Production Title", widget: "string" }
               - { name: "description", label: "Description", widget: "text" }
+              - { name: "image", label: "Photo", widget: "image", required: false, hint: "Optional — upload a photo from the production" }
           - name: "cta"
             label: "Bottom Call-to-Action"
             widget: "object"
@@ -225,8 +226,6 @@ collections:
               - { name: "name", label: "Venue Name", widget: "string" }
               - { name: "address", label: "Address", widget: "string" }
               - { name: "postcode", label: "Postcode", widget: "string" }
-          - { name: "instagram_url", label: "Instagram URL", widget: "string" }
-          - { name: "instagram_handle", label: "Instagram Handle", widget: "string", hint: "e.g. @stonesfieldplayers" }
           - name: "join_box"
             label: "Want to Join Box"
             widget: "object"
@@ -237,7 +236,19 @@ collections:
             label: "Contact Form Options"
             widget: "list"
             field: { name: "subject", label: "Option", widget: "string" }
-          - { name: "map_embed_url", label: "Google Maps Embed URL", widget: "string", required: false, hint: "Paste a Google Maps embed URL, or leave blank" }
+          - name: "gallery"
+            label: "Photo Gallery"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Gallery Heading", widget: "string" }
+              - name: "photos"
+                label: "Photos"
+                label_singular: "Photo"
+                widget: "list"
+                summary: "{{fields.caption}}"
+                fields:
+                  - { name: "image", label: "Photo", widget: "image" }
+                  - { name: "caption", label: "Caption", widget: "string", required: false, hint: "Optional short description" }
 
   # ============================================================
   # SITE SETTINGS
@@ -252,15 +263,15 @@ collections:
         fields:
           - { name: "name", label: "Group Name", widget: "string" }
           - { name: "tagline", label: "Short Description (footer)", widget: "text" }
-          - { name: "email", label: "Email Address", widget: "string" }
-          - name: "venue"
-            label: "Venue"
-            widget: "object"
-            fields:
-              - { name: "name", label: "Venue Name", widget: "string" }
-              - { name: "address", label: "Address", widget: "string" }
-              - { name: "postcode", label: "Postcode", widget: "string" }
-          - { name: "instagram_url", label: "Instagram URL", widget: "string" }
-          - { name: "instagram_handle", label: "Instagram Handle", widget: "string", hint: "e.g. @stonesfieldplayers" }
           - { name: "copyright_year", label: "Copyright Year", widget: "string" }
           - { name: "logo", label: "Logo", widget: "image" }
+          - name: "social_links"
+            label: "Social Media"
+            label_singular: "Social Link"
+            widget: "list"
+            summary: "{{fields.platform}} — {{fields.handle}}"
+            fields:
+              - { name: "platform", label: "Platform Name", widget: "string", hint: "e.g. Instagram, Facebook, X (Twitter)" }
+              - { name: "icon", label: "Emoji Icon", widget: "string", hint: "e.g. 📷 for Instagram, 👍 for Facebook" }
+              - { name: "url", label: "Profile URL", widget: "string", hint: "Full link to your profile page" }
+              - { name: "handle", label: "Display Name", widget: "string", hint: "e.g. @stonesfieldplayers" }

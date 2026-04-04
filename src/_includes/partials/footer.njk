@@ -18,13 +18,15 @@
       <div class="footer-social">
         <h4>Follow Us</h4>
         <div class="social-links">
-          <a href="{{ site.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">&#128247;</a>
+          {% for social in site.social_links %}
+            <a href="{{ social.url }}" target="_blank" rel="noopener" aria-label="{{ social.platform }}">{{ social.icon }}</a>
+          {% endfor %}
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; {{ site.copyright_year }} {{ site.name }}. All rights reserved.</span>
-      <span>{{ site.venue.name }}, {{ site.venue.postcode }}</span>
+      <span>{{ contact.venue.name }}, {{ contact.venue.postcode }}</span>
     </div>
   </div>
 </footer>

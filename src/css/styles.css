@@ -640,15 +640,39 @@ nav {
   resize: vertical;
 }
 
-/* ===== MAP PLACEHOLDER ===== */
-.map-section {
-  background: var(--grey-light);
-  height: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--grey-mid);
-  font-size: 0.9rem;
+/* ===== PHOTO GALLERY ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border: 1px solid var(--grey-light);
+  background: var(--white);
+  transition: all var(--transition);
+}
+
+.gallery-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-caption {
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--grey-dark);
+  text-align: left;
 }
 
 /* ===== FOOTER ===== */

@@ -1,14 +1,14 @@
 {
   "name": "Stonesfield Players",
   "tagline": "An amateur drama group based in Stonesfield, West Oxfordshire. Performing plays, pantomimes and original drama since 1953.",
-  "email": "thestonesfieldplayers@gmail.com",
-  "venue": {
-    "name": "Stonesfield Village Hall",
-    "address": "Stonesfield, Oxfordshire",
-    "postcode": "OX29 8HA"
-  },
-  "instagram_url": "https://www.instagram.com/stonesfieldplayers/",
-  "instagram_handle": "@stonesfieldplayers",
   "copyright_year": "2026",
-  "logo": "/images/logo.jpg"
+  "logo": "/images/logo.jpg",
+  "social_links": [
+    {
+      "platform": "Instagram",
+      "icon": "📷",
+      "url": "https://www.instagram.com/stonesfieldplayers/",
+      "handle": "@stonesfieldplayers"
+    }
+  ]
 }

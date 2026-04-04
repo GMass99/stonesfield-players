@@ -80,32 +80,38 @@
     {
       "date_label": "November 2025",
       "title": "Cold Comfort Farm",
-      "description": "Stella Gibbons' brilliantly funny portrayal of English rural life in the 1930s, dramatised by Paul Doust and directed by Becki Sherlaw-Johnson."
+      "description": "Stella Gibbons' brilliantly funny portrayal of English rural life in the 1930s, dramatised by Paul Doust and directed by Becki Sherlaw-Johnson.",
+      "image": ""
     },
     {
       "date_label": "Previous Production",
       "title": "The Private Collection",
-      "description": "An original play written by Becki Sherlaw-Johnson and David Lines. Featuring Katie Saville and Ruth Thornburn."
+      "description": "An original play written by Becki Sherlaw-Johnson and David Lines. Featuring Katie Saville and Ruth Thornburn.",
+      "image": ""
     },
     {
       "date_label": "Previous Production",
       "title": "Plaza Suite",
-      "description": "Neil Simon's classic comedy, featuring Beth Binnian, Mark Saville and Alison Richards."
+      "description": "Neil Simon's classic comedy, featuring Beth Binnian, Mark Saville and Alison Richards.",
+      "image": ""
     },
     {
       "date_label": "Classic Production",
       "title": "Twelfth Night",
-      "description": "Shakespeare's beloved comedy \u2014 one of many classic works the Players have performed over the decades."
+      "description": "Shakespeare's beloved comedy \u2014 one of many classic works the Players have performed over the decades.",
+      "image": ""
     },
     {
       "date_label": "Pantomime",
       "title": "Mother Goose",
-      "description": "One of several pantomimes the Players have produced, delighting audiences young and old."
+      "description": "One of several pantomimes the Players have produced, delighting audiences young and old.",
+      "image": ""
     },
     {
       "date_label": "1990s",
       "title": "Original One-Act Play",
-      "description": "A world premiere of a one-act play by Sally Wainwright, performed by the Players."
+      "description": "A world premiere of a one-act play by Sally Wainwright, performed by the Players.",
+      "image": ""
     }
   ],
   "cta": {
