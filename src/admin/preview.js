@@ -292,6 +292,9 @@ var ContactPreview = createClass({
   render: function() {
     var entry = this.props.entry;
     var pageHeader = entry.getIn(['data', 'page_header']);
+    var email = entry.getIn(['data', 'email']) || '';
+    var venue = entry.getIn(['data', 'venue']);
+    var instagramHandle = entry.getIn(['data', 'instagram_handle']) || '';
     var joinBox = entry.getIn(['data', 'join_box']);
 
     return h('div', {},
@@ -305,9 +308,44 @@ var ContactPreview = createClass({
 
       h('section', {},
         h('div', { className: 'container' },
-          h('div', { className: 'join-box' },
-            h('h4', {}, joinBox && joinBox.get('heading') || ''),
-            h('p', { dangerouslySetInnerHTML: { __html: joinBox && joinBox.get('text') || '' } })
+          h('div', { className: 'contact-grid' },
+            h('div', { className: 'contact-info' },
+              h('h3', {}, 'Contact Details'),
+
+              h('div', { className: 'contact-item' },
+                h('div', { className: 'icon' }, '\u2709'),
+                h('div', {},
+                  h('h4', {}, 'Email'),
+                  h('a', {}, email)
+                )
+              ),
+
+              venue ? h('div', { className: 'contact-item' },
+                h('div', { className: 'icon' }, '\u{1F4CD}'),
+                h('div', {},
+                  h('h4', {}, 'Venue'),
+                  h('p', {}, (venue.get('name') || '') + ', ' + (venue.get('address') || '') + ', ' + (venue.get('postcode') || ''))
+                )
+              ) : null,
+
+              h('div', { className: 'contact-item' },
+                h('div', { className: 'icon' }, '\u{1F4F7}'),
+                h('div', {},
+                  h('h4', {}, 'Instagram'),
+                  h('a', {}, instagramHandle)
+                )
+              ),
+
+              h('div', { className: 'join-box' },
+                h('h4', {}, joinBox && joinBox.get('heading') || ''),
+                h('p', { dangerouslySetInnerHTML: { __html: joinBox && joinBox.get('text') || '' } })
+              )
+            ),
+
+            h('div', { className: 'contact-form' },
+              h('h3', {}, 'Send Us a Message'),
+              h('p', { style: { color: 'var(--grey-mid)', fontSize: '0.9rem', fontStyle: 'italic' } }, '(Form preview — fields shown on the live site)')
+            )
           )
         )
       )

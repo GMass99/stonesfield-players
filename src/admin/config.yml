@@ -217,12 +217,26 @@ collections:
               - { name: "subtitle", label: "Small Text", widget: "string" }
               - { name: "title", label: "Page Title", widget: "string" }
               - { name: "description", label: "Page Description", widget: "text" }
+          - { name: "email", label: "Email Address", widget: "string" }
+          - name: "venue"
+            label: "Venue"
+            widget: "object"
+            fields:
+              - { name: "name", label: "Venue Name", widget: "string" }
+              - { name: "address", label: "Address", widget: "string" }
+              - { name: "postcode", label: "Postcode", widget: "string" }
+          - { name: "instagram_url", label: "Instagram URL", widget: "string" }
+          - { name: "instagram_handle", label: "Instagram Handle", widget: "string", hint: "e.g. @stonesfieldplayers" }
           - name: "join_box"
             label: "Want to Join Box"
             widget: "object"
             fields:
               - { name: "heading", label: "Heading", widget: "string" }
               - { name: "text", label: "Text", widget: "text" }
+          - name: "form_subjects"
+            label: "Contact Form Options"
+            widget: "list"
+            field: { name: "subject", label: "Option", widget: "string" }
           - { name: "map_embed_url", label: "Google Maps Embed URL", widget: "string", required: false, hint: "Paste a Google Maps embed URL, or leave blank" }
 
   # ============================================================

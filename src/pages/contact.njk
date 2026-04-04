@@ -28,7 +28,7 @@ permalink: /contact/
           <div class="icon">&#9993;</div>
           <div>
             <h4>Email</h4>
-            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+            <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ permalink: /contact/
           <div class="icon">&#128205;</div>
           <div>
             <h4>Venue</h4>
-            <p>{{ site.venue.name }}<br>{{ site.venue.address }}<br>{{ site.venue.postcode }}</p>
+            <p>{{ contact.venue.name }}<br>{{ contact.venue.address }}<br>{{ contact.venue.postcode }}</p>
           </div>
         </div>
 
@@ -44,7 +44,7 @@ permalink: /contact/
           <div class="icon">&#128247;</div>
           <div>
             <h4>Instagram</h4>
-            <a href="{{ site.instagram_url }}" target="_blank" rel="noopener">{{ site.instagram_handle }}</a>
+            <a href="{{ contact.instagram_url }}" target="_blank" rel="noopener">{{ contact.instagram_handle }}</a>
           </div>
         </div>
 
@@ -69,11 +69,9 @@ permalink: /contact/
           <div class="form-group">
             <label for="subject">I'm Interested In</label>
             <select id="subject" name="subject">
-              <option value="general">General Enquiry</option>
-              <option value="joining">Joining the Group</option>
-              <option value="tickets">Ticket Information</option>
-              <option value="press">Press / Media</option>
-              <option value="other">Something Else</option>
+              {% for subject in contact.form_subjects %}
+                <option value="{{ subject | lower | replace(' ', '_') }}">{{ subject }}</option>
+              {% endfor %}
             </select>
           </div>
           <div class="form-group">
@@ -94,7 +92,7 @@ permalink: /contact/
     {% if contact.map_embed_url %}
       <iframe src="{{ contact.map_embed_url }}" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     {% else %}
-      <p>&#128205; Map of Stonesfield Village Hall</p>
+      <p>&#128205; Map of {{ contact.venue.name }}</p>
       <p style="font-size:0.8rem;margin-top:0.5rem;">Embed a Google Map here, or replace with a static image.</p>
     {% endif %}
   </div>
