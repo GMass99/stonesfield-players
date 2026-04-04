@@ -41,7 +41,7 @@ permalink: /about/
     <p class="section-subtitle">{{ about.notable_members_section.subtitle }}</p>
     <h2>{{ about.notable_members_section.heading }}</h2>
     <div class="features-grid" style="margin-top:2.5rem;">
-      {% for member in notable_members.items %}
+      {% for member in about.notable_members %}
       <div class="feature-card" style="background:var(--white);">
         <div class="icon">{{ member.icon }}</div>
         <h3>{{ member.name }}</h3>
@@ -60,7 +60,7 @@ permalink: /about/
   </div>
   <div class="container">
     <div class="timeline">
-      {% for entry in timeline.items %}
+      {% for entry in about.timeline %}
       <div class="timeline-item">
         <div class="timeline-content">
           <div class="timeline-year">{{ entry.year }}</div>
@@ -81,7 +81,7 @@ permalink: /about/
   </div>
   <div class="container">
     <div class="productions-grid">
-      {% for prod in productions.items %}
+      {% for prod in about.productions %}
       <div class="production-card">
         <div class="year">{{ prod.date_label }}</div>
         <h3>{{ prod.title }}</h3>

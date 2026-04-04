@@ -19,14 +19,95 @@
     "subtitle": "Notable Members",
     "heading": "Some Familiar Names"
   },
+  "notable_members": [
+    {
+      "icon": "\ud83c\udfae",
+      "name": "Rupert Friend",
+      "description": "Best known for <em>Homeland</em> and <em>Hitman: Agent 47</em>, Rupert was a member of the Players throughout his teenage years before going on to a stellar film and TV career."
+    },
+    {
+      "icon": "\ud83c\udfac",
+      "name": "Sally Wainwright",
+      "description": "The acclaimed writer and director has been a member of the Players, directing several productions over the years. We even premiered one of her one-act plays in the 1990s."
+    },
+    {
+      "icon": "\ud83c\udfa7",
+      "name": "Becki Sherlaw-Johnson",
+      "description": "Our longest-serving member, Becki joined as a teenager in 1975 and has been a driving force behind the group \u2014 acting, directing and serving as secretary."
+    }
+  ],
   "timeline_section": {
     "subtitle": "Through the Years",
     "heading": "Our History"
   },
+  "timeline": [
+    {
+      "year": "1953",
+      "title": "The Beginning",
+      "description": "The Stonesfield Players are founded in the village of Stonesfield, near Witney, Oxfordshire."
+    },
+    {
+      "year": "1975",
+      "title": "Growing Membership",
+      "description": "Becki Sherlaw-Johnson joins as a teenager \u2014 she would go on to become the group's longest-serving member."
+    },
+    {
+      "year": "1990s",
+      "title": "Original Works",
+      "description": "The Players premiere a one-act play by Sally Wainwright and begin producing more original work written by members."
+    },
+    {
+      "year": "2000s",
+      "title": "Competition Success",
+      "description": "The group enters local drama competitions and wins both junior and senior categories. Young member Rupert Friend begins his acting journey."
+    },
+    {
+      "year": "2025",
+      "title": "Cold Comfort Farm",
+      "description": "A brilliant production of Stella Gibbons' classic at Stonesfield Village Hall, directed by Becki Sherlaw-Johnson. Three nights, sold-out audiences."
+    },
+    {
+      "year": "2026",
+      "title": "Mercy of Sisters",
+      "description": "Our next production \u2014 coming to the Village Hall in late June 2026. Watch this space!"
+    }
+  ],
   "productions_section": {
     "subtitle": "On Stage",
     "heading": "Past Productions"
   },
+  "productions": [
+    {
+      "date_label": "November 2025",
+      "title": "Cold Comfort Farm",
+      "description": "Stella Gibbons' brilliantly funny portrayal of English rural life in the 1930s, dramatised by Paul Doust and directed by Becki Sherlaw-Johnson."
+    },
+    {
+      "date_label": "Previous Production",
+      "title": "The Private Collection",
+      "description": "An original play written by Becki Sherlaw-Johnson and David Lines. Featuring Katie Saville and Ruth Thornburn."
+    },
+    {
+      "date_label": "Previous Production",
+      "title": "Plaza Suite",
+      "description": "Neil Simon's classic comedy, featuring Beth Binnian, Mark Saville and Alison Richards."
+    },
+    {
+      "date_label": "Classic Production",
+      "title": "Twelfth Night",
+      "description": "Shakespeare's beloved comedy \u2014 one of many classic works the Players have performed over the decades."
+    },
+    {
+      "date_label": "Pantomime",
+      "title": "Mother Goose",
+      "description": "One of several pantomimes the Players have produced, delighting audiences young and old."
+    },
+    {
+      "date_label": "1990s",
+      "title": "Original One-Act Play",
+      "description": "A world premiere of a one-act play by Sally Wainwright, performed by the Players."
+    }
+  ],
   "cta": {
     "heading": "Want to Join Us?",
     "description": "Whether you want to tread the boards, work backstage, or just help out on show nights \u2014 we'd love to hear from you.",

@@ -64,23 +64,28 @@ var HomePreview = createClass({
 });
 
 // ============================================================
-// EVENTS PAGE PREVIEW
+// WHAT'S ON PAGE PREVIEW (merged events + page text)
 // ============================================================
-var EventsPreview = createClass({
+var WhatsOnPreview = createClass({
   render: function() {
     var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
+    var pageHeader = entry.getIn(['data', 'page_header']);
+    var events = entry.getIn(['data', 'events']);
+    var placeholderText = entry.getIn(['data', 'placeholder_text']) || '';
+    var pastBanner = entry.getIn(['data', 'past_events_banner']);
+    var cta = entry.getIn(['data', 'cta']);
 
     return h('div', {},
       h('section', { className: 'page-header' },
         h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, "What's On"),
-          h('h1', {}, 'Upcoming Events')
+          h('p', { className: 'section-subtitle' }, pageHeader && pageHeader.get('subtitle') || ''),
+          h('h1', {}, pageHeader && pageHeader.get('title') || ''),
+          h('p', {}, pageHeader && pageHeader.get('description') || '')
         )
       ),
       h('section', {},
         h('div', { className: 'container' },
-          items ? items.map(function(event, i) {
+          events ? events.map(function(event, i) {
             return event.get('visible') !== false ? h('div', { className: 'event-card', key: i },
               h('div', { className: 'event-date-block' },
                 h('div', { className: 'month' }, event.get('month') || ''),
@@ -99,97 +104,28 @@ var EventsPreview = createClass({
                   : h('p', { style: { color: 'var(--accent)', fontWeight: '600', fontSize: '0.9rem' } }, '\u2733 ' + (event.get('ticket_status') || ''))
               )
             ) : null;
-          }).toArray() : null
+          }).toArray() : null,
+
+          h('div', { style: { textAlign: 'center', padding: '3rem 0' } },
+            h('p', { style: { color: 'var(--grey-mid)', fontSize: '0.95rem' }, dangerouslySetInnerHTML: { __html: placeholderText.replace(/\n/g, '<br>') } })
+          )
         )
-      )
-    );
-  }
-});
+      ),
 
-// ============================================================
-// PRODUCTIONS PREVIEW
-// ============================================================
-var ProductionsPreview = createClass({
-  render: function() {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-
-    return h('div', {},
-      h('section', {},
-        h('div', { className: 'container', style: { textAlign: 'center' } },
-          h('p', { className: 'section-subtitle' }, 'On Stage'),
-          h('h2', {}, 'Past Productions')
-        ),
+      h('section', { className: 'next-show' },
         h('div', { className: 'container' },
-          h('div', { className: 'productions-grid' },
-            items ? items.map(function(prod, i) {
-              return h('div', { className: 'production-card', key: i },
-                h('div', { className: 'year' }, prod.get('date_label') || ''),
-                h('h3', {}, prod.get('title') || ''),
-                h('p', {}, prod.get('description') || '')
-              );
-            }).toArray() : null
-          )
+          h('p', { className: 'section-subtitle' }, pastBanner && pastBanner.get('subtitle') || ''),
+          h('h2', {}, pastBanner && pastBanner.get('title') || ''),
+          h('p', { className: 'show-details' }, pastBanner && pastBanner.get('description') || ''),
+          h('a', { className: 'btn' }, pastBanner && pastBanner.get('link_text') || '')
         )
-      )
-    );
-  }
-});
+      ),
 
-// ============================================================
-// NOTABLE MEMBERS PREVIEW
-// ============================================================
-var MembersPreview = createClass({
-  render: function() {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-
-    return h('div', {},
-      h('section', { style: { background: 'var(--off-white)' } },
-        h('div', { className: 'container', style: { textAlign: 'center' } },
-          h('p', { className: 'section-subtitle' }, 'Notable Members'),
-          h('h2', {}, 'Some Familiar Names'),
-          h('div', { className: 'features-grid', style: { marginTop: '2rem' } },
-            items ? items.map(function(member, i) {
-              return h('div', { className: 'feature-card', style: { background: 'var(--white)' }, key: i },
-                h('div', { className: 'icon' }, member.get('icon') || ''),
-                h('h3', {}, member.get('name') || ''),
-                h('p', { dangerouslySetInnerHTML: { __html: member.get('description') || '' } })
-              );
-            }).toArray() : null
-          )
-        )
-      )
-    );
-  }
-});
-
-// ============================================================
-// TIMELINE PREVIEW
-// ============================================================
-var TimelinePreview = createClass({
-  render: function() {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-
-    return h('div', {},
-      h('section', { className: 'timeline-section' },
-        h('div', { className: 'container', style: { textAlign: 'center' } },
-          h('p', { className: 'section-subtitle' }, 'Through the Years'),
-          h('h2', {}, 'Our History')
-        ),
+      h('section', { className: 'cta-section' },
         h('div', { className: 'container' },
-          h('div', { className: 'timeline' },
-            items ? items.map(function(entry, i) {
-              return h('div', { className: 'timeline-item', key: i },
-                h('div', { className: 'timeline-content' },
-                  h('div', { className: 'timeline-year' }, entry.get('year') || ''),
-                  h('h3', {}, entry.get('title') || ''),
-                  h('p', {}, entry.get('description') || '')
-                )
-              );
-            }).toArray() : null
-          )
+          h('h2', {}, cta && cta.get('heading') || ''),
+          h('p', {}, cta && cta.get('description') || ''),
+          h('a', { className: 'btn btn-primary' }, cta && cta.get('button_text') || '')
         )
       )
     );
@@ -197,7 +133,7 @@ var TimelinePreview = createClass({
 });
 
 // ============================================================
-// ABOUT PAGE PREVIEW
+// ABOUT PAGE PREVIEW (all data now in one file)
 // ============================================================
 var AboutPreview = createClass({
   render: function() {
@@ -205,8 +141,11 @@ var AboutPreview = createClass({
     var pageHeader = entry.getIn(['data', 'page_header']);
     var intro = entry.getIn(['data', 'intro']);
     var notableSection = entry.getIn(['data', 'notable_members_section']);
+    var members = entry.getIn(['data', 'notable_members']);
     var timelineSection = entry.getIn(['data', 'timeline_section']);
+    var timeline = entry.getIn(['data', 'timeline']);
     var prodSection = entry.getIn(['data', 'productions_section']);
+    var productions = entry.getIn(['data', 'productions']);
     var cta = entry.getIn(['data', 'cta']);
 
     return h('div', {},
@@ -235,24 +174,57 @@ var AboutPreview = createClass({
         )
       ),
 
-      h('section', { style: { background: 'var(--off-white)', textAlign: 'center' } },
-        h('div', { className: 'container' },
+      h('section', { style: { background: 'var(--off-white)' } },
+        h('div', { className: 'container', style: { textAlign: 'center' } },
           h('p', { className: 'section-subtitle' }, notableSection && notableSection.get('subtitle') || ''),
-          h('h2', {}, notableSection && notableSection.get('heading') || '')
+          h('h2', {}, notableSection && notableSection.get('heading') || ''),
+          h('div', { className: 'features-grid', style: { marginTop: '2rem' } },
+            members ? members.map(function(member, i) {
+              return h('div', { className: 'feature-card', style: { background: 'var(--white)' }, key: i },
+                h('div', { className: 'icon' }, member.get('icon') || ''),
+                h('h3', {}, member.get('name') || ''),
+                h('p', { dangerouslySetInnerHTML: { __html: member.get('description') || '' } })
+              );
+            }).toArray() : null
+          )
         )
       ),
 
-      h('section', { className: 'timeline-section', style: { textAlign: 'center' } },
-        h('div', { className: 'container' },
+      h('section', { className: 'timeline-section' },
+        h('div', { className: 'container', style: { textAlign: 'center' } },
           h('p', { className: 'section-subtitle' }, timelineSection && timelineSection.get('subtitle') || ''),
           h('h2', {}, timelineSection && timelineSection.get('heading') || '')
+        ),
+        h('div', { className: 'container' },
+          h('div', { className: 'timeline' },
+            timeline ? timeline.map(function(item, i) {
+              return h('div', { className: 'timeline-item', key: i },
+                h('div', { className: 'timeline-content' },
+                  h('div', { className: 'timeline-year' }, item.get('year') || ''),
+                  h('h3', {}, item.get('title') || ''),
+                  h('p', {}, item.get('description') || '')
+                )
+              );
+            }).toArray() : null
+          )
         )
       ),
 
-      h('section', { style: { textAlign: 'center' } },
-        h('div', { className: 'container' },
+      h('section', {},
+        h('div', { className: 'container', style: { textAlign: 'center' } },
           h('p', { className: 'section-subtitle' }, prodSection && prodSection.get('subtitle') || ''),
           h('h2', {}, prodSection && prodSection.get('heading') || '')
+        ),
+        h('div', { className: 'container' },
+          h('div', { className: 'productions-grid' },
+            productions ? productions.map(function(prod, i) {
+              return h('div', { className: 'production-card', key: i },
+                h('div', { className: 'year' }, prod.get('date_label') || ''),
+                h('h3', {}, prod.get('title') || ''),
+                h('p', {}, prod.get('description') || '')
+              );
+            }).toArray() : null
+          )
         )
       ),
 
@@ -268,7 +240,7 @@ var AboutPreview = createClass({
 });
 
 // ============================================================
-// EVENTS PAGE CONTENT PREVIEW
+// (EventsPagePreview kept for backwards compat but no longer used)
 // ============================================================
 var EventsPagePreview = createClass({
   render: function() {
@@ -394,10 +366,6 @@ CMS.registerPreviewStyle('/admin/preview.css');
 
 CMS.registerPreviewTemplate('home', HomePreview);
 CMS.registerPreviewTemplate('about', AboutPreview);
-CMS.registerPreviewTemplate('events_page', EventsPagePreview);
+CMS.registerPreviewTemplate('whats_on', WhatsOnPreview);
 CMS.registerPreviewTemplate('contact', ContactPreview);
-CMS.registerPreviewTemplate('events_list', EventsPreview);
-CMS.registerPreviewTemplate('productions_list', ProductionsPreview);
-CMS.registerPreviewTemplate('notable_members_list', MembersPreview);
-CMS.registerPreviewTemplate('timeline_list', TimelinePreview);
 CMS.registerPreviewTemplate('site', SitePreview);
