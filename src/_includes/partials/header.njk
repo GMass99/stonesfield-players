@@ -1,0 +1,17 @@
+<!-- HEADER -->
+<header id="header">
+  <nav class="container">
+    <a href="/" class="nav-logo">
+      <img src="{{ site.logo }}" alt="{{ site.name }} logo">
+      <span>{{ site.name }}</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      {% for item in navigation %}
+        <a href="{{ item.url }}"{% if item.page == currentPage %} class="active"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </div>
+  </nav>
+</header>

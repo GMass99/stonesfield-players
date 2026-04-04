@@ -1,0 +1,280 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images"
+public_folder: "/images"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+
+  # ============================================================
+  # EVENTS — the most frequently edited collection
+  # ============================================================
+  - name: "events"
+    label: "🎭 Events (What's On)"
+    description: "Add, edit or remove upcoming events and shows."
+    files:
+      - name: "events_list"
+        label: "Events"
+        file: "src/_data/events.json"
+        fields:
+          - name: "items"
+            label: "Events"
+            label_singular: "Event"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.month}} {{fields.year}}"
+            fields:
+              - { name: "title", label: "Show / Event Name", widget: "string" }
+              - { name: "month", label: "Month", widget: "string", hint: "e.g. June, November" }
+              - { name: "day", label: "Day", widget: "string", hint: "e.g. 15, TBC" }
+              - { name: "year", label: "Year", widget: "string" }
+              - { name: "location", label: "Venue", widget: "string", default: "Stonesfield Village Hall" }
+              - { name: "time", label: "Time", widget: "string", hint: "e.g. 7:30pm" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "ticket_status", label: "Ticket Status Text", widget: "string", hint: "e.g. 'Tickets coming soon' or 'Sold out'" }
+              - { name: "ticket_url", label: "Ticket Link (URL)", widget: "string", required: false, hint: "Leave blank if tickets aren't on sale yet" }
+              - { name: "visible", label: "Show on website?", widget: "boolean", default: true }
+
+  # ============================================================
+  # PAST PRODUCTIONS
+  # ============================================================
+  - name: "productions"
+    label: "📋 Past Productions"
+    description: "Manage the archive of past shows on the About page."
+    files:
+      - name: "productions_list"
+        label: "Productions"
+        file: "src/_data/productions.json"
+        fields:
+          - name: "items"
+            label: "Productions"
+            label_singular: "Production"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.date_label}})"
+            fields:
+              - { name: "date_label", label: "Date / Period", widget: "string", hint: "e.g. 'November 2025' or 'Pantomime'" }
+              - { name: "title", label: "Production Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+
+  # ============================================================
+  # NOTABLE MEMBERS
+  # ============================================================
+  - name: "notable_members"
+    label: "⭐ Notable Members"
+    description: "Famous or long-serving members shown on the About page."
+    files:
+      - name: "notable_members_list"
+        label: "Members"
+        file: "src/_data/notable_members.json"
+        fields:
+          - name: "items"
+            label: "Members"
+            label_singular: "Member"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { name: "icon", label: "Emoji Icon", widget: "string", hint: "Paste an emoji like 🎬 or 🎭" }
+              - { name: "name", label: "Name", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+
+  # ============================================================
+  # TIMELINE
+  # ============================================================
+  - name: "timeline"
+    label: "📅 History Timeline"
+    description: "Milestones in the group's history, shown on the About page."
+    files:
+      - name: "timeline_list"
+        label: "Timeline"
+        file: "src/_data/timeline.json"
+        fields:
+          - name: "items"
+            label: "Timeline Entries"
+            label_singular: "Entry"
+            widget: "list"
+            summary: "{{fields.year}} — {{fields.title}}"
+            fields:
+              - { name: "year", label: "Year", widget: "string", hint: "e.g. 1953, 1990s, 2025" }
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+
+  # ============================================================
+  # SITE SETTINGS
+  # ============================================================
+  - name: "settings"
+    label: "⚙️ Site Settings"
+    description: "Global information: email, venue, social links, etc."
+    files:
+      - name: "site"
+        label: "General Settings"
+        file: "src/_data/site.json"
+        fields:
+          - { name: "name", label: "Group Name", widget: "string" }
+          - { name: "tagline", label: "Short Description (footer)", widget: "text" }
+          - { name: "email", label: "Email Address", widget: "string" }
+          - name: "venue"
+            label: "Venue"
+            widget: "object"
+            fields:
+              - { name: "name", label: "Venue Name", widget: "string" }
+              - { name: "address", label: "Address", widget: "string" }
+              - { name: "postcode", label: "Postcode", widget: "string" }
+          - { name: "instagram_url", label: "Instagram URL", widget: "string" }
+          - { name: "instagram_handle", label: "Instagram Handle", widget: "string", hint: "e.g. @stonesfieldplayers" }
+          - { name: "copyright_year", label: "Copyright Year", widget: "string" }
+          - { name: "logo", label: "Logo", widget: "image" }
+
+  # ============================================================
+  # PAGE CONTENT
+  # ============================================================
+  - name: "pages"
+    label: "📝 Page Content"
+    description: "Edit the text on each page."
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "src/_data/home.json"
+        fields:
+          - name: "hero"
+            label: "Hero Section"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Main Heading", widget: "string", hint: "Use <br> for a line break" }
+              - { name: "description", label: "Subtitle Text", widget: "text" }
+              - { name: "cta_primary_text", label: "Primary Button Text", widget: "string" }
+              - { name: "cta_primary_url", label: "Primary Button Link", widget: "string" }
+              - { name: "cta_secondary_text", label: "Secondary Button Text", widget: "string" }
+              - { name: "cta_secondary_url", label: "Secondary Button Link", widget: "string" }
+          - name: "next_show"
+            label: "Next Show Banner"
+            widget: "object"
+            fields:
+              - { name: "visible", label: "Show this banner?", widget: "boolean", default: true }
+              - { name: "subtitle", label: "Small Text Above Title", widget: "string" }
+              - { name: "title", label: "Show Name", widget: "string" }
+              - { name: "details", label: "Date & Venue Line", widget: "string" }
+              - { name: "link_text", label: "Button Text", widget: "string" }
+              - { name: "link_url", label: "Button Link", widget: "string" }
+          - name: "features_section"
+            label: "Features Section Heading"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "heading", label: "Section Heading", widget: "string" }
+          - name: "features"
+            label: "Feature Cards"
+            widget: "list"
+            summary: "{{fields.title}}"
+            max: 3
+            fields:
+              - { name: "icon", label: "Emoji Icon", widget: "string" }
+              - { name: "title", label: "Card Title", widget: "string" }
+              - { name: "description", label: "Card Text", widget: "text" }
+          - name: "cta"
+            label: "Bottom Call-to-Action"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "button_text", label: "Button Text", widget: "string" }
+              - { name: "button_url", label: "Button Link", widget: "string" }
+
+      - name: "about"
+        label: "About Page"
+        file: "src/_data/about.json"
+        fields:
+          - name: "page_header"
+            label: "Page Header"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "title", label: "Page Title", widget: "string" }
+              - { name: "description", label: "Page Description", widget: "text" }
+          - name: "intro"
+            label: "Introduction Section"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "paragraphs", label: "Paragraphs", widget: "list", field: { name: "paragraph", label: "Paragraph", widget: "text" } }
+              - { name: "image", label: "Photo", widget: "image", required: false, hint: "Upload a group photo" }
+              - { name: "cta_text", label: "Button Text", widget: "string" }
+              - { name: "cta_url", label: "Button Link", widget: "string" }
+          - name: "notable_members_section"
+            label: "Notable Members Heading"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "heading", label: "Heading", widget: "string" }
+          - name: "timeline_section"
+            label: "Timeline Heading"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "heading", label: "Heading", widget: "string" }
+          - name: "productions_section"
+            label: "Past Productions Heading"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "heading", label: "Heading", widget: "string" }
+          - name: "cta"
+            label: "Bottom Call-to-Action"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "button_text", label: "Button Text", widget: "string" }
+              - { name: "button_url", label: "Button Link", widget: "string" }
+
+      - name: "events_page"
+        label: "Events Page"
+        file: "src/_data/events_page.json"
+        fields:
+          - name: "page_header"
+            label: "Page Header"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "title", label: "Page Title", widget: "string" }
+              - { name: "description", label: "Page Description", widget: "text" }
+          - { name: "placeholder_text", label: "More Events Text", widget: "text" }
+          - name: "past_events_banner"
+            label: "Past Events Banner"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "link_text", label: "Button Text", widget: "string" }
+              - { name: "link_url", label: "Button Link", widget: "string" }
+          - name: "cta"
+            label: "Bottom Call-to-Action"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "button_text", label: "Button Text", widget: "string" }
+              - { name: "button_url", label: "Button Link", widget: "string" }
+
+      - name: "contact"
+        label: "Contact Page"
+        file: "src/_data/contact.json"
+        fields:
+          - name: "page_header"
+            label: "Page Header"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "title", label: "Page Title", widget: "string" }
+              - { name: "description", label: "Page Description", widget: "text" }
+          - name: "join_box"
+            label: "Want to Join Box"
+            widget: "object"
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "text", label: "Text", widget: "text" }
+          - { name: "map_embed_url", label: "Google Maps Embed URL", widget: "string", required: false, hint: "Paste a Google Maps embed URL, or leave blank" }

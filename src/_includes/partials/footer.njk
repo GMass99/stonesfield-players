@@ -1,0 +1,30 @@
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <img src="{{ site.logo }}" alt="{{ site.name }}">
+          <span>{{ site.name }}</span>
+        </div>
+        <p>{{ site.tagline }}</p>
+      </div>
+      <div class="footer-links">
+        <h4>Pages</h4>
+        {% for item in navigation %}
+          <a href="{{ item.url }}">{{ item.label }}</a>
+        {% endfor %}
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="{{ site.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">&#128247;</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ site.copyright_year }} {{ site.name }}. All rights reserved.</span>
+      <span>{{ site.venue.name }}, {{ site.venue.postcode }}</span>
+    </div>
+  </div>
+</footer>

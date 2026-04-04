@@ -1,0 +1,58 @@
+---
+layout: layouts/base.njk
+currentPage: index
+pageTitle: "Stonesfield Players — Village Theatre Since 1953"
+metaDescription: "The Stonesfield Players are an amateur drama group based in Stonesfield, West Oxfordshire. Performing everything from Shakespeare to pantomime since 1953."
+permalink: /
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content container">
+    <img src="{{ site.logo }}" alt="{{ site.name }}" class="hero-logo">
+    <h1>{{ home.hero.heading | safe }}</h1>
+    <p>{{ home.hero.description }}</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="{{ home.hero.cta_primary_url }}" class="btn btn-primary">{{ home.hero.cta_primary_text }}</a>
+      <a href="{{ home.hero.cta_secondary_url }}" class="btn">{{ home.hero.cta_secondary_text }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT SHOW -->
+{% if home.next_show.visible %}
+<section class="next-show">
+  <div class="container">
+    <p class="section-subtitle">{{ home.next_show.subtitle }}</p>
+    <h2>{{ home.next_show.title }}</h2>
+    <p class="show-details">{{ home.next_show.details }}</p>
+    <a href="{{ home.next_show.link_url }}" class="btn">{{ home.next_show.link_text }}</a>
+  </div>
+</section>
+{% endif %}
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <p class="section-subtitle">{{ home.features_section.subtitle }}</p>
+    <h2>{{ home.features_section.heading }}</h2>
+    <div class="features-grid">
+      {% for card in home.features %}
+      <div class="feature-card">
+        <div class="icon">{{ card.icon }}</div>
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>{{ home.cta.heading }}</h2>
+    <p>{{ home.cta.description }}</p>
+    <a href="{{ home.cta.button_url }}" class="btn btn-primary">{{ home.cta.button_text }}</a>
+  </div>
+</section>

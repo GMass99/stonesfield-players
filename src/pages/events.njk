@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+currentPage: events
+pageTitle: "What's On — Stonesfield Players"
+metaDescription: "Upcoming shows and events from the Stonesfield Players amateur drama group."
+permalink: /events/
+---
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <p class="section-subtitle">{{ events_page.page_header.subtitle }}</p>
+    <h1>{{ events_page.page_header.title }}</h1>
+    <p>{{ events_page.page_header.description }}</p>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section>
+  <div class="container">
+
+    {% for event in events.items %}
+    {% if event.visible %}
+    <!-- EVENT: {{ event.title }} -->
+    <div class="event-card">
+      <div class="event-date-block">
+        <div class="month">{{ event.month }}</div>
+        <div class="day">{{ event.day }}</div>
+        <div class="year-text">{{ event.year }}</div>
+      </div>
+      <div class="event-info">
+        <h3>{{ event.title }}</h3>
+        <div class="event-meta">
+          <span>&#128205; {{ event.location }}</span>
+          <span>&#128336; {{ event.time }}</span>
+        </div>
+        <p>{{ event.description }}</p>
+        {% if event.ticket_url %}
+          <a href="{{ event.ticket_url }}" class="btn btn-accent">Buy Tickets</a>
+        {% else %}
+          <p style="color:var(--accent);font-weight:600;font-size:0.9rem;">&#9733; {{ event.ticket_status }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <!-- PLACEHOLDER: More events -->
+    <div style="text-align:center;padding:4rem 0 2rem;">
+      <p style="color:var(--grey-mid);font-size:0.95rem;">{{ events_page.placeholder_text | replace("\n", "<br>") | safe }}</p>
+      <a href="{{ site.instagram_url }}" target="_blank" rel="noopener" class="btn" style="margin-top:1.5rem;">Follow on Instagram</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAST EVENTS BANNER -->
+<section class="next-show">
+  <div class="container">
+    <p class="section-subtitle">{{ events_page.past_events_banner.subtitle }}</p>
+    <h2>{{ events_page.past_events_banner.title }}</h2>
+    <p class="show-details">{{ events_page.past_events_banner.description }}</p>
+    <a href="{{ events_page.past_events_banner.link_url }}" class="btn">{{ events_page.past_events_banner.link_text }}</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>{{ events_page.cta.heading }}</h2>
+    <p>{{ events_page.cta.description }}</p>
+    <a href="{{ events_page.cta.button_url }}" class="btn btn-primary">{{ events_page.cta.button_text }}</a>
+  </div>
+</section>

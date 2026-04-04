@@ -1,0 +1,102 @@
+---
+layout: layouts/base.njk
+currentPage: about
+pageTitle: "About Us — Stonesfield Players"
+metaDescription: "Learn about the Stonesfield Players — over 70 years of amateur theatre in West Oxfordshire."
+permalink: /about/
+---
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <p class="section-subtitle">{{ about.page_header.subtitle }}</p>
+    <h1>{{ about.page_header.title }}</h1>
+    <p>{{ about.page_header.description }}</p>
+  </div>
+</section>
+
+<!-- ABOUT INTRO -->
+<section>
+  <div class="container about-intro">
+    <div class="about-text">
+      <h2>{{ about.intro.heading }}</h2>
+      {% for paragraph in about.intro.paragraphs %}
+        <p>{{ paragraph | safe }}</p>
+      {% endfor %}
+      <a href="{{ about.intro.cta_url }}" class="btn">{{ about.intro.cta_text }}</a>
+    </div>
+    <div class="about-image">
+      {% if about.intro.image %}
+        <img src="{{ about.intro.image }}" alt="{{ site.name }}">
+      {% else %}
+        <span>&#127917; Photo coming soon</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- NOTABLE MEMBERS -->
+<section style="background: var(--off-white);">
+  <div class="container" style="text-align:center;">
+    <p class="section-subtitle">{{ about.notable_members_section.subtitle }}</p>
+    <h2>{{ about.notable_members_section.heading }}</h2>
+    <div class="features-grid" style="margin-top:2.5rem;">
+      {% for member in notable_members.items %}
+      <div class="feature-card" style="background:var(--white);">
+        <div class="icon">{{ member.icon }}</div>
+        <h3>{{ member.name }}</h3>
+        <p>{{ member.description | safe }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container" style="text-align:center;">
+    <p class="section-subtitle">{{ about.timeline_section.subtitle }}</p>
+    <h2>{{ about.timeline_section.heading }}</h2>
+  </div>
+  <div class="container">
+    <div class="timeline">
+      {% for entry in timeline.items %}
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">{{ entry.year }}</div>
+          <h3>{{ entry.title }}</h3>
+          <p>{{ entry.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- PAST PRODUCTIONS -->
+<section id="past">
+  <div class="container" style="text-align:center;">
+    <p class="section-subtitle">{{ about.productions_section.subtitle }}</p>
+    <h2>{{ about.productions_section.heading }}</h2>
+  </div>
+  <div class="container">
+    <div class="productions-grid">
+      {% for prod in productions.items %}
+      <div class="production-card">
+        <div class="year">{{ prod.date_label }}</div>
+        <h3>{{ prod.title }}</h3>
+        <p>{{ prod.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>{{ about.cta.heading }}</h2>
+    <p>{{ about.cta.description }}</p>
+    <a href="{{ about.cta.button_url }}" class="btn btn-primary">{{ about.cta.button_text }}</a>
+  </div>
+</section>

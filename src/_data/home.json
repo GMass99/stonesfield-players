@@ -1,0 +1,45 @@
+{
+  "hero": {
+    "heading": "Village Theatre,<br>Timeless Stories",
+    "description": "Bringing drama to the heart of Stonesfield since 1953. From Shakespeare to pantomime, we've been entertaining West Oxfordshire for over 70 years.",
+    "cta_primary_text": "What's On",
+    "cta_primary_url": "/events/",
+    "cta_secondary_text": "Join Us",
+    "cta_secondary_url": "/contact/"
+  },
+  "next_show": {
+    "visible": true,
+    "subtitle": "Coming Soon",
+    "title": "Mercy of Sisters",
+    "details": "Late June 2026 \u00b7 Stonesfield Village Hall, OX29 8HA",
+    "link_text": "Find Out More",
+    "link_url": "/events/"
+  },
+  "features_section": {
+    "subtitle": "Why We Do It",
+    "heading": "More Than Just a Drama Group"
+  },
+  "features": [
+    {
+      "icon": "\ud83c\udfad",
+      "title": "70+ Years of Theatre",
+      "description": "Founded in 1953, we've produced everything from farce to Shakespeare, from pantomime to original drama \u2014 and we're still going strong."
+    },
+    {
+      "icon": "\u2b50",
+      "title": "Award-Winning",
+      "description": "We've successfully entered local drama competitions, winning both junior and senior categories. Several of our young members have gone on to professional careers."
+    },
+    {
+      "icon": "\ud83e\udd1d",
+      "title": "Everyone Welcome",
+      "description": "Whether you want to act, direct, build sets, do lighting, or just help out \u2014 there's always room for new members. No experience needed."
+    }
+  ],
+  "cta": {
+    "heading": "Get Involved",
+    "description": "We're always looking for new members \u2014 on stage and behind the scenes. Come and be part of our next production.",
+    "button_text": "Get in Touch",
+    "button_url": "/contact/"
+  }
+}

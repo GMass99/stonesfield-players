@@ -1,0 +1,36 @@
+{
+  "page_header": {
+    "subtitle": "Our Story",
+    "title": "About the Players",
+    "description": "Over 70 years of bringing drama to the heart of a small Oxfordshire village."
+  },
+  "intro": {
+    "heading": "A Village Tradition Since 1953",
+    "paragraphs": [
+      "The Stonesfield Players were formed in the village of Stonesfield, near Witney, in 1953. For over seven decades we've been entertaining audiences in West Oxfordshire with productions ranging from Shakespearean classics to original one-act plays, from beloved pantomimes to modern drama.",
+      "Most years there has been at least one production, and they have ranged from farce to Shakespeare, from panto to drama. In more recent years, several of our productions have been written especially for us by members of the Players.",
+      "We perform at <strong>Stonesfield Village Hall</strong> \u2014 a warm, intimate venue that brings audiences right into the heart of the action."
+    ],
+    "image": "",
+    "cta_text": "Get Involved",
+    "cta_url": "/contact/"
+  },
+  "notable_members_section": {
+    "subtitle": "Notable Members",
+    "heading": "Some Familiar Names"
+  },
+  "timeline_section": {
+    "subtitle": "Through the Years",
+    "heading": "Our History"
+  },
+  "productions_section": {
+    "subtitle": "On Stage",
+    "heading": "Past Productions"
+  },
+  "cta": {
+    "heading": "Want to Join Us?",
+    "description": "Whether you want to tread the boards, work backstage, or just help out on show nights \u2014 we'd love to hear from you.",
+    "button_text": "Get in Touch",
+    "button_url": "/contact/"
+  }
+}

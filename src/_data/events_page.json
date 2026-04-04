@@ -1,0 +1,21 @@
+{
+  "page_header": {
+    "subtitle": "What's On",
+    "title": "Upcoming Events",
+    "description": "See what we've got coming up. Book early \u2014 our shows tend to sell out!"
+  },
+  "placeholder_text": "More events will be announced throughout the year.\nFollow us on Instagram to stay up to date.",
+  "past_events_banner": {
+    "subtitle": "Missed a Show?",
+    "title": "Past Productions",
+    "description": "See our archive of past performances on the About Us page.",
+    "link_text": "View Past Productions",
+    "link_url": "/about/#past"
+  },
+  "cta": {
+    "heading": "Want to Be in the Next Show?",
+    "description": "We're always looking for actors, directors, stage crew, lighting, sound \u2014 you name it. No experience necessary.",
+    "button_text": "Get in Touch",
+    "button_url": "/contact/"
+  }
+}
