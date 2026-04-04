@@ -11,7 +11,7 @@
     "visible": true,
     "subtitle": "Coming Soon",
     "title": "Mercy of Sisters",
-    "details": "Late June 2026 \u00b7 Stonesfield Village Hall, OX29 8HA",
+    "details": "Late June 2026 · Stonesfield Village Hall, OX29 8HA",
     "link_text": "Find Out More",
     "link_url": "/events/"
   },
@@ -21,24 +21,24 @@
   },
   "features": [
     {
-      "icon": "\ud83c\udfad",
+      "icon": "🎭",
       "title": "70+ Years of Theatre",
-      "description": "Founded in 1953, we've produced everything from farce to Shakespeare, from pantomime to original drama \u2014 and we're still going strong."
+      "description": "Founded in 1953, we've produced everything from farce to Shakespeare, from pantomime to original drama — and we're still going strong."
     },
     {
-      "icon": "\u2b50",
+      "icon": "⭐",
       "title": "Award-Winning",
       "description": "We've successfully entered local drama competitions, winning both junior and senior categories. Several of our young members have gone on to professional careers."
     },
     {
-      "icon": "\ud83e\udd1d",
+      "icon": "🤝",
       "title": "Everyone Welcome",
-      "description": "Whether you want to act, direct, build sets, do lighting, or just help out \u2014 there's always room for new members. No experience needed."
+      "description": "Whether you want to act, direct, build sets, do lighting, or just help out — there's always room for new members. No experience needed."
     }
   ],
   "cta": {
     "heading": "Get Involved",
-    "description": "We're always looking for new members \u2014 on stage and behind the scenes. Come and be part of our next production.",
+    "description": "We're always looking for new members — on stage and behind the scenes. Come and be part of our next production. Test",
     "button_text": "Get in Touch",
     "button_url": "/contact/"
   }
