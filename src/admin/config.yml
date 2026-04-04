@@ -12,53 +12,51 @@ slug:
 collections:
 
   # ============================================================
-  # EVENTS & SHOWS
+  # HOME
   # ============================================================
-  - name: "events"
-    label: "🎭 Events & Shows"
-    description: "Manage upcoming events and the Events page."
+  - name: "home"
+    label: "🏠 Home"
+    description: "Edit the Home page."
     files:
-      - name: "events_list"
-        label: "Manage Shows"
-        file: "src/_data/events.json"
+      - name: "home"
+        label: "Home Page Content"
+        file: "src/_data/home.json"
         fields:
-          - name: "items"
-            label: "Events"
-            label_singular: "Event"
-            widget: "list"
-            summary: "{{fields.title}} — {{fields.month}} {{fields.year}}"
-            fields:
-              - { name: "title", label: "Show / Event Name", widget: "string" }
-              - { name: "month", label: "Month", widget: "string", hint: "e.g. June, November" }
-              - { name: "day", label: "Day", widget: "string", hint: "e.g. 15, TBC" }
-              - { name: "year", label: "Year", widget: "string" }
-              - { name: "location", label: "Venue", widget: "string", default: "Stonesfield Village Hall" }
-              - { name: "time", label: "Time", widget: "string", hint: "e.g. 7:30pm" }
-              - { name: "description", label: "Description", widget: "text" }
-              - { name: "ticket_status", label: "Ticket Status Text", widget: "string", hint: "e.g. 'Tickets coming soon' or 'Sold out'" }
-              - { name: "ticket_url", label: "Ticket Link (URL)", widget: "string", required: false, hint: "Leave blank if tickets aren't on sale yet" }
-              - { name: "visible", label: "Show on website?", widget: "boolean", default: true }
-      - name: "events_page"
-        label: "Events Page Text"
-        file: "src/_data/events_page.json"
-        fields:
-          - name: "page_header"
-            label: "Page Header"
+          - name: "hero"
+            label: "Hero Section"
             widget: "object"
             fields:
-              - { name: "subtitle", label: "Small Text", widget: "string" }
-              - { name: "title", label: "Page Title", widget: "string" }
-              - { name: "description", label: "Page Description", widget: "text" }
-          - { name: "placeholder_text", label: "More Events Text", widget: "text" }
-          - name: "past_events_banner"
-            label: "Past Events Banner"
+              - { name: "heading", label: "Main Heading", widget: "string", hint: "Use <br> for a line break" }
+              - { name: "description", label: "Subtitle Text", widget: "text" }
+              - { name: "cta_primary_text", label: "Primary Button Text", widget: "string" }
+              - { name: "cta_primary_url", label: "Primary Button Link", widget: "string" }
+              - { name: "cta_secondary_text", label: "Secondary Button Text", widget: "string" }
+              - { name: "cta_secondary_url", label: "Secondary Button Link", widget: "string" }
+          - name: "next_show"
+            label: "Next Show Banner"
             widget: "object"
             fields:
-              - { name: "subtitle", label: "Small Text", widget: "string" }
-              - { name: "title", label: "Title", widget: "string" }
-              - { name: "description", label: "Description", widget: "text" }
+              - { name: "visible", label: "Show this banner?", widget: "boolean", default: true }
+              - { name: "subtitle", label: "Small Text Above Title", widget: "string" }
+              - { name: "title", label: "Show Name", widget: "string" }
+              - { name: "details", label: "Date & Venue Line", widget: "string" }
               - { name: "link_text", label: "Button Text", widget: "string" }
               - { name: "link_url", label: "Button Link", widget: "string" }
+          - name: "features_section"
+            label: "Features Section Heading"
+            widget: "object"
+            fields:
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "heading", label: "Section Heading", widget: "string" }
+          - name: "features"
+            label: "Feature Cards"
+            widget: "list"
+            summary: "{{fields.title}}"
+            max: 3
+            fields:
+              - { name: "icon", label: "Emoji Icon", widget: "string" }
+              - { name: "title", label: "Card Title", widget: "string" }
+              - { name: "description", label: "Card Text", widget: "text" }
           - name: "cta"
             label: "Bottom Call-to-Action"
             widget: "object"
@@ -69,11 +67,11 @@ collections:
               - { name: "button_url", label: "Button Link", widget: "string" }
 
   # ============================================================
-  # ABOUT PAGE — all about page content in one place
+  # ABOUT US
   # ============================================================
   - name: "about"
-    label: "📖 About Page"
-    description: "Everything on the About Us page."
+    label: "📖 About Us"
+    description: "Edit the About Us page."
     files:
       - name: "about"
         label: "Page Text & Headings"
@@ -162,51 +160,53 @@ collections:
               - { name: "description", label: "Description", widget: "text" }
 
   # ============================================================
-  # HOME PAGE
+  # WHAT'S ON
   # ============================================================
-  - name: "home"
-    label: "🏠 Home Page"
-    description: "Edit the home page content."
+  - name: "whats_on"
+    label: "🎭 What's On"
+    description: "Edit the What's On page."
     files:
-      - name: "home"
-        label: "Home Page"
-        file: "src/_data/home.json"
+      - name: "events_list"
+        label: "Manage Shows"
+        file: "src/_data/events.json"
         fields:
-          - name: "hero"
-            label: "Hero Section"
-            widget: "object"
+          - name: "items"
+            label: "Events"
+            label_singular: "Event"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.month}} {{fields.year}}"
             fields:
-              - { name: "heading", label: "Main Heading", widget: "string", hint: "Use <br> for a line break" }
-              - { name: "description", label: "Subtitle Text", widget: "text" }
-              - { name: "cta_primary_text", label: "Primary Button Text", widget: "string" }
-              - { name: "cta_primary_url", label: "Primary Button Link", widget: "string" }
-              - { name: "cta_secondary_text", label: "Secondary Button Text", widget: "string" }
-              - { name: "cta_secondary_url", label: "Secondary Button Link", widget: "string" }
-          - name: "next_show"
-            label: "Next Show Banner"
-            widget: "object"
-            fields:
-              - { name: "visible", label: "Show this banner?", widget: "boolean", default: true }
-              - { name: "subtitle", label: "Small Text Above Title", widget: "string" }
-              - { name: "title", label: "Show Name", widget: "string" }
-              - { name: "details", label: "Date & Venue Line", widget: "string" }
-              - { name: "link_text", label: "Button Text", widget: "string" }
-              - { name: "link_url", label: "Button Link", widget: "string" }
-          - name: "features_section"
-            label: "Features Section Heading"
+              - { name: "title", label: "Show / Event Name", widget: "string" }
+              - { name: "month", label: "Month", widget: "string", hint: "e.g. June, November" }
+              - { name: "day", label: "Day", widget: "string", hint: "e.g. 15, TBC" }
+              - { name: "year", label: "Year", widget: "string" }
+              - { name: "location", label: "Venue", widget: "string", default: "Stonesfield Village Hall" }
+              - { name: "time", label: "Time", widget: "string", hint: "e.g. 7:30pm" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "ticket_status", label: "Ticket Status Text", widget: "string", hint: "e.g. 'Tickets coming soon' or 'Sold out'" }
+              - { name: "ticket_url", label: "Ticket Link (URL)", widget: "string", required: false, hint: "Leave blank if tickets aren't on sale yet" }
+              - { name: "visible", label: "Show on website?", widget: "boolean", default: true }
+      - name: "events_page"
+        label: "Page Text"
+        file: "src/_data/events_page.json"
+        fields:
+          - name: "page_header"
+            label: "Page Header"
             widget: "object"
             fields:
               - { name: "subtitle", label: "Small Text", widget: "string" }
-              - { name: "heading", label: "Section Heading", widget: "string" }
-          - name: "features"
-            label: "Feature Cards"
-            widget: "list"
-            summary: "{{fields.title}}"
-            max: 3
+              - { name: "title", label: "Page Title", widget: "string" }
+              - { name: "description", label: "Page Description", widget: "text" }
+          - { name: "placeholder_text", label: "More Events Text", widget: "text" }
+          - name: "past_events_banner"
+            label: "Past Events Banner"
+            widget: "object"
             fields:
-              - { name: "icon", label: "Emoji Icon", widget: "string" }
-              - { name: "title", label: "Card Title", widget: "string" }
-              - { name: "description", label: "Card Text", widget: "text" }
+              - { name: "subtitle", label: "Small Text", widget: "string" }
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "link_text", label: "Button Text", widget: "string" }
+              - { name: "link_url", label: "Button Link", widget: "string" }
           - name: "cta"
             label: "Bottom Call-to-Action"
             widget: "object"
@@ -217,14 +217,14 @@ collections:
               - { name: "button_url", label: "Button Link", widget: "string" }
 
   # ============================================================
-  # CONTACT PAGE
+  # CONTACT
   # ============================================================
   - name: "contact"
-    label: "📞 Contact Page"
-    description: "Edit the contact page content."
+    label: "📞 Contact"
+    description: "Edit the Contact page."
     files:
       - name: "contact"
-        label: "Contact Page"
+        label: "Contact Page Content"
         file: "src/_data/contact.json"
         fields:
           - name: "page_header"
@@ -247,7 +247,7 @@ collections:
   # ============================================================
   - name: "settings"
     label: "⚙️ Site Settings"
-    description: "Global information: email, venue, social links, etc."
+    description: "Email, venue, social links, logo."
     files:
       - name: "site"
         label: "General Settings"
