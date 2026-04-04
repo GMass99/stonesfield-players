@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stonesfield Players — Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Style collection list entries as cards — applied immediately via CSS */
+    /* Target the <li> elements in collection file lists */
+    div[class*="Entries"] li,
+    ul[class] li[class] {
+      background: #f8f8f6 !important;
+      border: 2px solid #e8e8e6 !important;
+      border-radius: 6px !important;
+      margin: 0.75rem 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      transition: all 0.2s ease !important;
+      cursor: pointer !important;
+      box-shadow: none !important;
+    }
+
+    div[class*="Entries"] li:hover,
+    ul[class] li[class]:hover {
+      border-color: #c8a96e !important;
+      background: #fff !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+    }
+
+    /* Style the <a> links inside list items */
+    div[class*="Entries"] li a,
+    ul[class] li[class] a {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 1.25rem 1.5rem !important;
+      font-size: 1.1rem !important;
+      font-weight: 600 !important;
+      width: 100% !important;
+      background: transparent !important;
+      border: none !important;
+      text-decoration: none !important;
+      color: #111 !important;
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
@@ -22,58 +61,16 @@
         }
       }
 
-      // Style collection list entries as big clickable cards
+      // Add "Click to edit →" hint to collection entries
       var listItems = document.querySelectorAll('li[class] a[href*="/entries/"]');
       for (var j = 0; j < listItems.length; j++) {
         var link = listItems[j];
-        if (link.dataset.styled) continue;
-        link.dataset.styled = '1';
-
-        // Style the parent <li> as the card container
-        var li = link.parentElement;
-        li.style.background = '#f8f8f6';
-        li.style.border = '2px solid #e8e8e6';
-        li.style.borderRadius = '6px';
-        li.style.margin = '0.75rem 0';
-        li.style.padding = '0';
-        li.style.overflow = 'hidden';
-        li.style.transition = 'all 0.2s ease';
-        li.style.cursor = 'pointer';
-        li.style.boxShadow = 'none';
-
-        // Style the link to fill the card
-        link.style.display = 'flex';
-        link.style.alignItems = 'center';
-        link.style.justifyContent = 'space-between';
-        link.style.padding = '1.25rem 1.5rem';
-        link.style.fontSize = '1.1rem';
-        link.style.fontWeight = '600';
-        link.style.width = '100%';
-        link.style.background = 'transparent';
-        link.style.border = 'none';
-        link.style.textDecoration = 'none';
-        link.style.color = '#111';
-
-        // Add arrow hint
+        if (link.dataset.hinted) continue;
+        link.dataset.hinted = '1';
         var arrow = document.createElement('span');
-        arrow.textContent = 'Click to edit →';
-        arrow.style.fontSize = '0.85rem';
-        arrow.style.color = '#c8a96e';
-        arrow.style.fontWeight = '500';
-        arrow.style.whiteSpace = 'nowrap';
+        arrow.textContent = 'Click to edit \u2192';
+        arrow.style.cssText = 'font-size:0.85rem;color:#c8a96e;font-weight:500;white-space:nowrap;';
         link.appendChild(arrow);
-
-        // Hover on the <li> card
-        li.addEventListener('mouseenter', function() {
-          this.style.borderColor = '#c8a96e';
-          this.style.background = '#fff';
-          this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.06)';
-        });
-        li.addEventListener('mouseleave', function() {
-          this.style.borderColor = '#e8e8e6';
-          this.style.background = '#f8f8f6';
-          this.style.boxShadow = 'none';
-        });
       }
     }, 500);
   </script>
