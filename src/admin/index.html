@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stonesfield Players — Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     /* Style collection list entries as cards — applied immediately via CSS */
     /* Target the <li> elements in collection file lists */
@@ -46,7 +45,8 @@
   </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- DecapBridge PKCE login needs Decap CMS 3.8.3 or newer -->
+  <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
   <script src="/admin/preview.js"></script>
   <script>
     setInterval(function() {

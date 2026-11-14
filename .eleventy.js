@@ -2,6 +2,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
+  // Cloudflare Pages redirects (old .html addresses from the original site)
+  eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
 
   return {
     dir: {
