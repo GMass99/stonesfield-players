@@ -1,3 +1,7 @@
+# The site now lives on Cloudflare Pages at stonesfieldplayers.co.uk.
+# This file only matters for the old Netlify address: it forwards every
+# page on stonesfieldplayers.netlify.app to the same page on the new domain.
+
 [build]
   command = "npm run build"
   publish = "_site"
@@ -5,23 +9,8 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirects for old URLs (from the original static site)
 [[redirects]]
-  from = "/index.html"
-  to = "/"
+  from = "/*"
+  to = "https://stonesfieldplayers.co.uk/:splat"
   status = 301
-
-[[redirects]]
-  from = "/about.html"
-  to = "/about/"
-  status = 301
-
-[[redirects]]
-  from = "/events.html"
-  to = "/events/"
-  status = 301
-
-[[redirects]]
-  from = "/contact.html"
-  to = "/contact/"
-  status = 301
+  force = true
