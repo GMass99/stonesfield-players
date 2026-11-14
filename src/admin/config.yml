@@ -28,7 +28,7 @@ auth:
 logo_url: /images/logo.jpg
 
 # Adds a link back to the live site inside the admin panel
-site_url: https://stonesfieldplayers.pages.dev
+site_url: https://stonesfieldplayers.co.uk
 
 media_folder: "src/images"
 public_folder: "/images"
