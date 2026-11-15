@@ -168,6 +168,7 @@ setInterval(function() {
     box.innerHTML =
       '<span class="sp-page-preview-label">How this page looks on the website right now. Click it to edit.</span>' +
       '<span class="sp-page-preview-frame"><iframe src="' + section.url + '" tabindex="-1" title="Page preview"></iframe></span>';
+    box.style.maxWidth = Math.round(card.getBoundingClientRect().width) + 'px';
     var list = card.parentElement;
     list.parentElement.insertBefore(box, list.nextSibling);
   }
