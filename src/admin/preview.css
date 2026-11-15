@@ -381,11 +381,12 @@ section { padding: 5rem 0; }
   font-size: 0.9rem;
   text-align: center;
 }
-.sp-hidden-item { opacity: 0.4; position: relative; }
+.sp-hidden-item { position: relative; }
+.sp-hidden-item > *:not(.sp-hidden-badge) { opacity: 0.35; }
 .sp-hidden-badge {
   position: absolute; top: 0.5rem; right: 0.5rem;
   background: #111; color: #fff; font-size: 0.75rem; font-weight: 600;
-  padding: 0.25rem 0.5rem; border-radius: 3px; opacity: 1;
+  padding: 0.25rem 0.5rem; border-radius: 3px; z-index: 1;
 }
 
 /* Empty photo space */
