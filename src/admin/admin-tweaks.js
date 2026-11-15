@@ -203,3 +203,42 @@ setInterval(function() {
   window.addEventListener('hashchange', update);
   setInterval(update, 300);
 })();
+
+// ============================================================
+// Open and close a section (or a show, photo or production) by clicking
+// anywhere on its bar or name, not just the small arrow on the left.
+// Real buttons (Add, delete ×, drag handle) keep doing their own job.
+// ============================================================
+document.addEventListener('click', function (e) {
+  var t = e.target;
+  if (!t.closest || !t.closest('[class*="ControlPaneContainer"]')) return;
+  if (t.closest('button, a, input, textarea, select, [contenteditable="true"]')) return;
+
+  var bar = null;
+
+  // The name tab above a section ("NEXT SHOW BANNER")
+  var label = t.closest('label');
+  if (label) {
+    var cc = label.closest('[class*="ControlContainer"]');
+    var own = cc && cc.querySelector('[class*="TopBarContainer"]');
+    if (own && own.closest('[class*="ControlContainer"]') === cc) bar = own;
+  }
+
+  // The bar of a section, or of a show / photo / production
+  if (!bar && !label) {
+    bar = t.closest('[class*="TopBarContainer"], [class*="StyledListItemTopBar"]');
+  }
+
+  // The name of a closed show / photo / production, just under its bar
+  if (!bar && !label) {
+    var item = t.closest('[class*="SortableListItem"]');
+    var inner = t.closest('[class*="ControlContainer"]');
+    if (item && (!inner || inner.contains(item))) {
+      bar = item.querySelector('[class*="StyledListItemTopBar"]');
+    }
+  }
+
+  if (!bar) return;
+  var toggle = bar.querySelector('button');
+  if (toggle) toggle.click();
+});

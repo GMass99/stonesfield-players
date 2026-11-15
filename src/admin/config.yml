@@ -85,7 +85,7 @@ collections:
               - { name: "subtitle", label: "Small text", widget: "string" }
               - { name: "heading", label: "Heading", widget: "string" }
           - name: "features"
-            label: "The three boxes"
+            label: "Feature boxes"
             label_singular: "box"
             widget: "list"
             summary: "{{fields.title}}"
@@ -157,7 +157,7 @@ collections:
               - { name: "subtitle", label: "Small text", widget: "string" }
               - { name: "heading", label: "Heading", widget: "string" }
           - name: "timeline"
-            label: "History timeline"
+            label: "History timeline entries"
             label_singular: "entry"
             widget: "list"
             summary: "{{fields.year}} — {{fields.title}}"
