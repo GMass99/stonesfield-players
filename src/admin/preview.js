@@ -1,5 +1,36 @@
 // ============================================================
-// HOME PAGE PREVIEW
+// LIVE PREVIEWS FOR THE ADMIN PANEL
+// Each bit of text carries data-field="path.to.field" so that
+// admin-tweaks.js can highlight it when you click into that field.
+// ============================================================
+
+// Small helpers
+function f(path, props) {
+  var out = props || {};
+  out['data-field'] = path;
+  return out;
+}
+function val(map, key) {
+  return (map && map.get(key)) || '';
+}
+// Works for both saved images and photos uploaded but not yet published
+function assetUrl(props, path) {
+  if (!path) return '';
+  try {
+    var asset = props.getAsset(path);
+    if (asset && typeof asset.then !== 'function' && asset.toString) {
+      return asset.toString() || path;
+    }
+  } catch (e) {}
+  return path;
+}
+// Shown in place of something that's switched off, so you can see it's hidden
+function hiddenNote(path, text) {
+  return h('div', f(path, { className: 'sp-hidden-note' }), text);
+}
+
+// ============================================================
+// HOME PAGE
 // ============================================================
 var HomePreview = createClass({
   render: function() {
@@ -12,51 +43,50 @@ var HomePreview = createClass({
 
     return h('div', {},
 
-      // Hero
-      h('section', { className: 'hero' },
+      h('section', f('hero', { className: 'hero' }),
         h('div', { className: 'hero-content container' },
-          h('h1', { dangerouslySetInnerHTML: { __html: hero && hero.get('heading') || '' } }),
-          h('p', {}, hero && hero.get('description') || ''),
+          h('h1', f('hero.heading', { dangerouslySetInnerHTML: { __html: val(hero, 'heading') } })),
+          h('p', f('hero.description'), val(hero, 'description')),
           h('div', { style: { display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' } },
-            h('a', { className: 'btn btn-primary' }, hero && hero.get('cta_primary_text') || ''),
-            h('a', { className: 'btn' }, hero && hero.get('cta_secondary_text') || '')
+            h('a', f('hero.cta_primary_text', { className: 'btn btn-primary' }), val(hero, 'cta_primary_text')),
+            h('a', f('hero.cta_secondary_text', { className: 'btn' }), val(hero, 'cta_secondary_text'))
           )
         )
       ),
 
-      // Next Show
-      nextShow && nextShow.get('visible') ? h('section', { className: 'next-show' },
-        h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, nextShow.get('subtitle') || ''),
-          h('h2', {}, nextShow.get('title') || ''),
-          h('p', { className: 'show-details' }, nextShow.get('details') || ''),
-          h('a', { className: 'btn' }, nextShow.get('link_text') || '')
-        )
-      ) : null,
+      nextShow && nextShow.get('visible')
+        ? h('section', f('next_show', { className: 'next-show' }),
+            h('div', { className: 'container' },
+              h('p', f('next_show.subtitle', { className: 'section-subtitle' }), val(nextShow, 'subtitle')),
+              h('h2', f('next_show.title'), val(nextShow, 'title')),
+              h('p', f('next_show.details', { className: 'show-details' }), val(nextShow, 'details')),
+              h('a', f('next_show.link_text', { className: 'btn' }), val(nextShow, 'link_text'))
+            )
+          )
+        : hiddenNote('next_show', 'The next show banner is switched off, so it won’t appear on the home page.'),
 
-      // Features
-      h('section', { className: 'features' },
+      h('section', f('features_section', { className: 'features' }),
         h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, featuresSection && featuresSection.get('subtitle') || ''),
-          h('h2', {}, featuresSection && featuresSection.get('heading') || ''),
-          h('div', { className: 'features-grid' },
+          h('p', f('features_section.subtitle', { className: 'section-subtitle' }), val(featuresSection, 'subtitle')),
+          h('h2', f('features_section.heading'), val(featuresSection, 'heading')),
+          h('div', f('features', { className: 'features-grid' }),
             features ? features.map(function(card, i) {
-              return h('div', { className: 'feature-card', key: i },
-                h('div', { className: 'icon' }, card.get('icon') || ''),
-                h('h3', {}, card.get('title') || ''),
-                h('p', {}, card.get('description') || '')
+              var p = 'features.' + i;
+              return h('div', f(p, { className: 'feature-card', key: i }),
+                h('div', f(p + '.icon', { className: 'icon' }), val(card, 'icon')),
+                h('h3', f(p + '.title'), val(card, 'title')),
+                h('p', f(p + '.description'), val(card, 'description'))
               );
             }).toArray() : null
           )
         )
       ),
 
-      // CTA
-      h('section', { className: 'cta-section' },
+      h('section', f('cta', { className: 'cta-section' }),
         h('div', { className: 'container' },
-          h('h2', {}, cta && cta.get('heading') || ''),
-          h('p', {}, cta && cta.get('description') || ''),
-          h('a', { className: 'btn btn-primary' }, cta && cta.get('button_text') || '')
+          h('h2', f('cta.heading'), val(cta, 'heading')),
+          h('p', f('cta.description'), val(cta, 'description')),
+          h('a', f('cta.button_text', { className: 'btn btn-primary' }), val(cta, 'button_text'))
         )
       )
     );
@@ -64,7 +94,7 @@ var HomePreview = createClass({
 });
 
 // ============================================================
-// WHAT'S ON PAGE PREVIEW (merged events + page text)
+// SHOWS & EVENTS (What's On page)
 // ============================================================
 var WhatsOnPreview = createClass({
   render: function() {
@@ -76,56 +106,61 @@ var WhatsOnPreview = createClass({
     var cta = entry.getIn(['data', 'cta']);
 
     return h('div', {},
-      h('section', { className: 'page-header' },
+      h('section', f('page_header', { className: 'page-header' }),
         h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, pageHeader && pageHeader.get('subtitle') || ''),
-          h('h1', {}, pageHeader && pageHeader.get('title') || ''),
-          h('p', {}, pageHeader && pageHeader.get('description') || '')
+          h('p', f('page_header.subtitle', { className: 'section-subtitle' }), val(pageHeader, 'subtitle')),
+          h('h1', f('page_header.title'), val(pageHeader, 'title')),
+          h('p', f('page_header.description'), val(pageHeader, 'description'))
         )
       ),
       h('section', {},
-        h('div', { className: 'container' },
+        h('div', f('events', { className: 'container' }),
           events ? events.map(function(event, i) {
-            return event.get('visible') !== false ? h('div', { className: 'event-card', key: i },
+            var p = 'events.' + i;
+            var hidden = event.get('visible') === false;
+            return h('div', f(p, { className: 'event-card' + (hidden ? ' sp-hidden-item' : ''), key: i }),
+              hidden ? h('div', { className: 'sp-hidden-badge' }, 'Hidden — not shown on the website') : null,
               h('div', { className: 'event-date-block' },
-                h('div', { className: 'month' }, event.get('month') || ''),
-                h('div', { className: 'day' }, event.get('day') || ''),
-                h('div', { className: 'year-text' }, event.get('year') || '')
+                h('div', f(p + '.month', { className: 'month' }), val(event, 'month')),
+                h('div', f(p + '.day', { className: 'day' }), val(event, 'day')),
+                h('div', f(p + '.year', { className: 'year-text' }), val(event, 'year'))
               ),
               h('div', { className: 'event-info' },
-                h('h3', {}, event.get('title') || ''),
+                h('h3', f(p + '.title'), val(event, 'title')),
                 h('div', { className: 'event-meta' },
-                  h('span', {}, '\u{1F4CD} ' + (event.get('location') || '')),
-                  h('span', {}, '\u{1F550} ' + (event.get('time') || ''))
+                  h('span', f(p + '.location'), '\u{1F4CD} ' + val(event, 'location')),
+                  h('span', f(p + '.time'), '\u{1F550} ' + val(event, 'time'))
                 ),
-                h('p', {}, event.get('description') || ''),
-                event.get('ticket_url')
-                  ? h('a', { className: 'btn btn-accent' }, 'Buy Tickets')
-                  : h('p', { style: { color: 'var(--accent)', fontWeight: '600', fontSize: '0.9rem' } }, '\u2733 ' + (event.get('ticket_status') || ''))
+                h('p', f(p + '.description'), val(event, 'description')),
+                h('div', f(p + '.ticket_url'),
+                  event.get('ticket_url')
+                    ? h('a', { className: 'btn btn-accent' }, 'Buy Tickets')
+                    : h('p', f(p + '.ticket_status', { style: { color: 'var(--accent)', fontWeight: '600', fontSize: '0.9rem' } }), '✳ ' + val(event, 'ticket_status'))
+                )
               )
-            ) : null;
+            );
           }).toArray() : null,
 
           h('div', { style: { textAlign: 'center', padding: '3rem 0' } },
-            h('p', { style: { color: 'var(--grey-mid)', fontSize: '0.95rem' }, dangerouslySetInnerHTML: { __html: placeholderText.replace(/\n/g, '<br>') } })
+            h('p', f('placeholder_text', { style: { color: 'var(--grey-mid)', fontSize: '0.95rem' }, dangerouslySetInnerHTML: { __html: placeholderText.replace(/\n/g, '<br>') } }))
           )
         )
       ),
 
-      h('section', { className: 'next-show' },
+      h('section', f('past_events_banner', { className: 'next-show' }),
         h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, pastBanner && pastBanner.get('subtitle') || ''),
-          h('h2', {}, pastBanner && pastBanner.get('title') || ''),
-          h('p', { className: 'show-details' }, pastBanner && pastBanner.get('description') || ''),
-          h('a', { className: 'btn' }, pastBanner && pastBanner.get('link_text') || '')
+          h('p', f('past_events_banner.subtitle', { className: 'section-subtitle' }), val(pastBanner, 'subtitle')),
+          h('h2', f('past_events_banner.title'), val(pastBanner, 'title')),
+          h('p', f('past_events_banner.description', { className: 'show-details' }), val(pastBanner, 'description')),
+          h('a', f('past_events_banner.link_text', { className: 'btn' }), val(pastBanner, 'link_text'))
         )
       ),
 
-      h('section', { className: 'cta-section' },
+      h('section', f('cta', { className: 'cta-section' }),
         h('div', { className: 'container' },
-          h('h2', {}, cta && cta.get('heading') || ''),
-          h('p', {}, cta && cta.get('description') || ''),
-          h('a', { className: 'btn btn-primary' }, cta && cta.get('button_text') || '')
+          h('h2', f('cta.heading'), val(cta, 'heading')),
+          h('p', f('cta.description'), val(cta, 'description')),
+          h('a', f('cta.button_text', { className: 'btn btn-primary' }), val(cta, 'button_text'))
         )
       )
     );
@@ -133,11 +168,12 @@ var WhatsOnPreview = createClass({
 });
 
 // ============================================================
-// ABOUT PAGE PREVIEW (all data now in one file)
+// ABOUT US & PAST SHOWS
 // ============================================================
 var AboutPreview = createClass({
   render: function() {
-    var entry = this.props.entry;
+    var props = this.props;
+    var entry = props.entry;
     var pageHeader = entry.getIn(['data', 'page_header']);
     var intro = entry.getIn(['data', 'intro']);
     var notableSection = entry.getIn(['data', 'notable_members_section']);
@@ -149,60 +185,64 @@ var AboutPreview = createClass({
     var cta = entry.getIn(['data', 'cta']);
 
     return h('div', {},
-      h('section', { className: 'page-header' },
+      h('section', f('page_header', { className: 'page-header' }),
         h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, pageHeader && pageHeader.get('subtitle') || ''),
-          h('h1', {}, pageHeader && pageHeader.get('title') || ''),
-          h('p', {}, pageHeader && pageHeader.get('description') || '')
+          h('p', f('page_header.subtitle', { className: 'section-subtitle' }), val(pageHeader, 'subtitle')),
+          h('h1', f('page_header.title'), val(pageHeader, 'title')),
+          h('p', f('page_header.description'), val(pageHeader, 'description'))
         )
       ),
 
-      h('section', {},
+      h('section', f('intro'),
         h('div', { className: 'container about-intro' },
           h('div', { className: 'about-text' },
-            h('h2', {}, intro && intro.get('heading') || ''),
-            intro && intro.get('paragraphs') ? intro.get('paragraphs').map(function(p, i) {
-              return h('p', { key: i, dangerouslySetInnerHTML: { __html: p } });
-            }).toArray() : null,
-            h('a', { className: 'btn' }, intro && intro.get('cta_text') || '')
+            h('h2', f('intro.heading'), val(intro, 'heading')),
+            h('div', f('intro.paragraphs'),
+              intro && intro.get('paragraphs') ? intro.get('paragraphs').map(function(para, i) {
+                return h('p', f('intro.paragraphs.' + i, { key: i, dangerouslySetInnerHTML: { __html: para } }));
+              }).toArray() : null
+            ),
+            h('a', f('intro.cta_text', { className: 'btn' }), val(intro, 'cta_text'))
           ),
-          h('div', { className: 'about-image' },
+          h('div', f('intro.image', { className: 'about-image' }),
             intro && intro.get('image')
-              ? h('img', { src: intro.get('image') })
+              ? h('img', { src: assetUrl(props, intro.get('image')) })
               : h('span', {}, '\u{1F3AD} Photo coming soon')
           )
         )
       ),
 
-      h('section', { style: { background: 'var(--off-white)' } },
+      h('section', f('notable_members_section', { style: { background: 'var(--off-white)' } }),
         h('div', { className: 'container', style: { textAlign: 'center' } },
-          h('p', { className: 'section-subtitle' }, notableSection && notableSection.get('subtitle') || ''),
-          h('h2', {}, notableSection && notableSection.get('heading') || ''),
-          h('div', { className: 'features-grid', style: { marginTop: '2rem' } },
+          h('p', f('notable_members_section.subtitle', { className: 'section-subtitle' }), val(notableSection, 'subtitle')),
+          h('h2', f('notable_members_section.heading'), val(notableSection, 'heading')),
+          h('div', f('notable_members', { className: 'features-grid', style: { marginTop: '2rem' } }),
             members ? members.map(function(member, i) {
-              return h('div', { className: 'feature-card', style: { background: 'var(--white)' }, key: i },
-                h('div', { className: 'icon' }, member.get('icon') || ''),
-                h('h3', {}, member.get('name') || ''),
-                h('p', { dangerouslySetInnerHTML: { __html: member.get('description') || '' } })
+              var p = 'notable_members.' + i;
+              return h('div', f(p, { className: 'feature-card', style: { background: 'var(--white)' }, key: i }),
+                h('div', f(p + '.icon', { className: 'icon' }), val(member, 'icon')),
+                h('h3', f(p + '.name'), val(member, 'name')),
+                h('p', f(p + '.description', { dangerouslySetInnerHTML: { __html: val(member, 'description') } }))
               );
             }).toArray() : null
           )
         )
       ),
 
-      h('section', { className: 'timeline-section' },
+      h('section', f('timeline_section', { className: 'timeline-section' }),
         h('div', { className: 'container', style: { textAlign: 'center' } },
-          h('p', { className: 'section-subtitle' }, timelineSection && timelineSection.get('subtitle') || ''),
-          h('h2', {}, timelineSection && timelineSection.get('heading') || '')
+          h('p', f('timeline_section.subtitle', { className: 'section-subtitle' }), val(timelineSection, 'subtitle')),
+          h('h2', f('timeline_section.heading'), val(timelineSection, 'heading'))
         ),
         h('div', { className: 'container' },
-          h('div', { className: 'timeline' },
+          h('div', f('timeline', { className: 'timeline' }),
             timeline ? timeline.map(function(item, i) {
-              return h('div', { className: 'timeline-item', key: i },
+              var p = 'timeline.' + i;
+              return h('div', f(p, { className: 'timeline-item', key: i }),
                 h('div', { className: 'timeline-content' },
-                  h('div', { className: 'timeline-year' }, item.get('year') || ''),
-                  h('h3', {}, item.get('title') || ''),
-                  h('p', {}, item.get('description') || '')
+                  h('div', f(p + '.year', { className: 'timeline-year' }), val(item, 'year')),
+                  h('h3', f(p + '.title'), val(item, 'title')),
+                  h('p', f(p + '.description'), val(item, 'description'))
                 )
               );
             }).toArray() : null
@@ -210,29 +250,33 @@ var AboutPreview = createClass({
         )
       ),
 
-      h('section', {},
+      h('section', f('productions_section'),
         h('div', { className: 'container', style: { textAlign: 'center' } },
-          h('p', { className: 'section-subtitle' }, prodSection && prodSection.get('subtitle') || ''),
-          h('h2', {}, prodSection && prodSection.get('heading') || '')
+          h('p', f('productions_section.subtitle', { className: 'section-subtitle' }), val(prodSection, 'subtitle')),
+          h('h2', f('productions_section.heading'), val(prodSection, 'heading'))
         ),
         h('div', { className: 'container' },
-          h('div', { className: 'productions-grid' },
+          h('div', f('productions', { className: 'productions-grid' }),
             productions ? productions.map(function(prod, i) {
-              return h('div', { className: 'production-card', key: i },
-                h('div', { className: 'year' }, prod.get('date_label') || ''),
-                h('h3', {}, prod.get('title') || ''),
-                h('p', {}, prod.get('description') || '')
+              var p = 'productions.' + i;
+              return h('div', f(p, { className: 'production-card', key: i }),
+                prod.get('image')
+                  ? h('img', f(p + '.image', { src: assetUrl(props, prod.get('image')), style: { width: '100%', aspectRatio: '16/9', objectFit: 'cover', marginBottom: '1.25rem' } }))
+                  : h('div', f(p + '.image', { className: 'sp-photo-slot' }), 'No photo yet'),
+                h('div', f(p + '.date_label', { className: 'year' }), val(prod, 'date_label')),
+                h('h3', f(p + '.title'), val(prod, 'title')),
+                h('p', f(p + '.description'), val(prod, 'description'))
               );
             }).toArray() : null
           )
         )
       ),
 
-      h('section', { className: 'cta-section' },
+      h('section', f('cta', { className: 'cta-section' }),
         h('div', { className: 'container' },
-          h('h2', {}, cta && cta.get('heading') || ''),
-          h('p', {}, cta && cta.get('description') || ''),
-          h('a', { className: 'btn btn-primary' }, cta && cta.get('button_text') || '')
+          h('h2', f('cta.heading'), val(cta, 'heading')),
+          h('p', f('cta.description'), val(cta, 'description')),
+          h('a', f('cta.button_text', { className: 'btn btn-primary' }), val(cta, 'button_text'))
         )
       )
     );
@@ -240,69 +284,26 @@ var AboutPreview = createClass({
 });
 
 // ============================================================
-// (EventsPagePreview kept for backwards compat but no longer used)
-// ============================================================
-var EventsPagePreview = createClass({
-  render: function() {
-    var entry = this.props.entry;
-    var pageHeader = entry.getIn(['data', 'page_header']);
-    var placeholderText = entry.getIn(['data', 'placeholder_text']) || '';
-    var pastBanner = entry.getIn(['data', 'past_events_banner']);
-    var cta = entry.getIn(['data', 'cta']);
-
-    return h('div', {},
-      h('section', { className: 'page-header' },
-        h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, pageHeader && pageHeader.get('subtitle') || ''),
-          h('h1', {}, pageHeader && pageHeader.get('title') || ''),
-          h('p', {}, pageHeader && pageHeader.get('description') || '')
-        )
-      ),
-
-      h('section', {},
-        h('div', { className: 'container', style: { textAlign: 'center', padding: '3rem 0' } },
-          h('p', { style: { color: 'var(--grey-mid)', fontSize: '0.95rem' }, dangerouslySetInnerHTML: { __html: placeholderText.replace(/\n/g, '<br>') } })
-        )
-      ),
-
-      h('section', { className: 'next-show' },
-        h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, pastBanner && pastBanner.get('subtitle') || ''),
-          h('h2', {}, pastBanner && pastBanner.get('title') || ''),
-          h('p', { className: 'show-details' }, pastBanner && pastBanner.get('description') || ''),
-          h('a', { className: 'btn' }, pastBanner && pastBanner.get('link_text') || '')
-        )
-      ),
-
-      h('section', { className: 'cta-section' },
-        h('div', { className: 'container' },
-          h('h2', {}, cta && cta.get('heading') || ''),
-          h('p', {}, cta && cta.get('description') || ''),
-          h('a', { className: 'btn btn-primary' }, cta && cta.get('button_text') || '')
-        )
-      )
-    );
-  }
-});
-
-// ============================================================
-// CONTACT PAGE PREVIEW
+// PHOTOS & CONTACT (Contact page)
 // ============================================================
 var ContactPreview = createClass({
   render: function() {
-    var entry = this.props.entry;
+    var props = this.props;
+    var entry = props.entry;
     var pageHeader = entry.getIn(['data', 'page_header']);
     var email = entry.getIn(['data', 'email']) || '';
     var venue = entry.getIn(['data', 'venue']);
-    var instagramHandle = entry.getIn(['data', 'instagram_handle']) || '';
     var joinBox = entry.getIn(['data', 'join_box']);
+    var subjects = entry.getIn(['data', 'form_subjects']);
+    var gallery = entry.getIn(['data', 'gallery']);
+    var photos = gallery && gallery.get('photos');
 
     return h('div', {},
-      h('section', { className: 'page-header' },
+      h('section', f('page_header', { className: 'page-header' }),
         h('div', { className: 'container' },
-          h('p', { className: 'section-subtitle' }, pageHeader && pageHeader.get('subtitle') || ''),
-          h('h1', {}, pageHeader && pageHeader.get('title') || ''),
-          h('p', {}, pageHeader && pageHeader.get('description') || '')
+          h('p', f('page_header.subtitle', { className: 'section-subtitle' }), val(pageHeader, 'subtitle')),
+          h('h1', f('page_header.title'), val(pageHeader, 'title')),
+          h('p', f('page_header.description'), val(pageHeader, 'description'))
         )
       ),
 
@@ -312,41 +313,58 @@ var ContactPreview = createClass({
             h('div', { className: 'contact-info' },
               h('h3', {}, 'Contact Details'),
 
-              h('div', { className: 'contact-item' },
-                h('div', { className: 'icon' }, '\u2709'),
+              h('div', f('email', { className: 'contact-item' }),
+                h('div', { className: 'icon' }, '✉'),
                 h('div', {},
                   h('h4', {}, 'Email'),
                   h('a', {}, email)
                 )
               ),
 
-              venue ? h('div', { className: 'contact-item' },
+              h('div', f('venue', { className: 'contact-item' }),
                 h('div', { className: 'icon' }, '\u{1F4CD}'),
                 h('div', {},
                   h('h4', {}, 'Venue'),
-                  h('p', {}, (venue.get('name') || '') + ', ' + (venue.get('address') || '') + ', ' + (venue.get('postcode') || ''))
-                )
-              ) : null,
-
-              h('div', { className: 'contact-item' },
-                h('div', { className: 'icon' }, '\u{1F4F7}'),
-                h('div', {},
-                  h('h4', {}, 'Instagram'),
-                  h('a', {}, instagramHandle)
+                  h('p', {},
+                    h('span', f('venue.name'), val(venue, 'name')), ', ',
+                    h('span', f('venue.address'), val(venue, 'address')), ', ',
+                    h('span', f('venue.postcode'), val(venue, 'postcode'))
+                  )
                 )
               ),
 
-              h('div', { className: 'join-box' },
-                h('h4', {}, joinBox && joinBox.get('heading') || ''),
-                h('p', { dangerouslySetInnerHTML: { __html: joinBox && joinBox.get('text') || '' } })
+              h('div', f('join_box', { className: 'join-box' }),
+                h('h4', f('join_box.heading'), val(joinBox, 'heading')),
+                h('p', f('join_box.text', { dangerouslySetInnerHTML: { __html: val(joinBox, 'text') } }))
               )
             ),
 
             h('div', { className: 'contact-form' },
               h('h3', {}, 'Send Us a Message'),
-              h('p', { style: { color: 'var(--grey-mid)', fontSize: '0.9rem', fontStyle: 'italic' } }, '(Form preview — fields shown on the live site)')
+              h('p', f('form_subjects', { style: { color: 'var(--grey-mid)', fontSize: '0.9rem' } }),
+                'Subject choices: ' + (subjects ? subjects.toArray().join(' · ') : '')
+              )
             )
           )
+        )
+      ),
+
+      h('section', f('gallery', { style: { background: 'var(--off-white)' } }),
+        h('div', { className: 'container', style: { textAlign: 'center' } },
+          h('h2', f('gallery.heading'), val(gallery, 'heading')),
+          photos && photos.size
+            ? h('div', f('gallery.photos', { className: 'gallery-grid' }),
+                photos.map(function(photo, i) {
+                  var p = 'gallery.photos.' + i;
+                  return h('div', f(p, { className: 'gallery-item', key: i }),
+                    photo.get('image')
+                      ? h('img', f(p + '.image', { src: assetUrl(props, photo.get('image')), alt: val(photo, 'caption') }))
+                      : h('div', f(p + '.image', { className: 'sp-photo-slot' }), 'Choose a photo'),
+                    photo.get('caption') ? h('p', f(p + '.caption', { className: 'gallery-caption' }), photo.get('caption')) : null
+                  );
+                }).toArray()
+              )
+            : h('p', f('gallery.photos', { style: { color: 'var(--grey-mid)', marginTop: '1.5rem' } }), 'Photos coming soon — check back after our next production!')
         )
       )
     );
@@ -354,45 +372,37 @@ var ContactPreview = createClass({
 });
 
 // ============================================================
-// SITE SETTINGS PREVIEW
+// SOCIAL MEDIA & SETTINGS (shown roughly as the site footer)
 // ============================================================
 var SitePreview = createClass({
   render: function() {
-    var entry = this.props.entry;
-    var data = entry.get('data');
+    var props = this.props;
+    var data = props.entry.get('data');
+    var socials = data.get('social_links');
 
     return h('div', { style: { padding: '2rem' } },
-      h('h2', { style: { marginBottom: '2rem' } }, 'Site Settings Preview'),
+      h('p', { className: 'section-subtitle' }, 'Website footer'),
 
-      h('div', { style: { marginBottom: '1.5rem' } },
-        h('strong', {}, 'Group Name: '),
-        h('span', {}, data.get('name') || '')
+      h('div', f('social_links', { style: { margin: '1.5rem 0 2rem' } }),
+        h('h4', { style: { marginBottom: '0.75rem' } }, 'Follow Us'),
+        socials ? socials.map(function(s, i) {
+          var p = 'social_links.' + i;
+          return h('div', f(p, { key: i, style: { display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '0.6rem' } }),
+            h('span', f(p + '.icon', { style: { fontSize: '1.4rem' } }), val(s, 'icon')),
+            h('strong', f(p + '.platform'), val(s, 'platform')),
+            h('span', f(p + '.handle'), val(s, 'handle')),
+            h('span', f(p + '.url', { style: { color: 'var(--grey-mid)', fontSize: '0.85rem' } }), val(s, 'url'))
+          );
+        }).toArray() : null
       ),
 
-      h('div', { style: { marginBottom: '1.5rem' } },
-        h('strong', {}, 'Tagline: '),
-        h('span', {}, data.get('tagline') || '')
+      h('div', f('logo', { style: { marginBottom: '1.5rem' } }),
+        data.get('logo') ? h('img', { src: assetUrl(props, data.get('logo')), style: { maxWidth: '120px' } }) : null
       ),
-
-      h('div', { style: { marginBottom: '1.5rem' } },
-        h('strong', {}, 'Email: '),
-        h('span', {}, data.get('email') || '')
-      ),
-
-      data.get('venue') ? h('div', { style: { marginBottom: '1.5rem' } },
-        h('strong', {}, 'Venue: '),
-        h('span', {}, data.getIn(['venue', 'name']) + ', ' + data.getIn(['venue', 'address']) + ', ' + data.getIn(['venue', 'postcode']))
-      ) : null,
-
-      h('div', { style: { marginBottom: '1.5rem' } },
-        h('strong', {}, 'Instagram: '),
-        h('span', {}, data.get('instagram_handle') || '')
-      ),
-
-      data.get('logo') ? h('div', {},
-        h('strong', {}, 'Logo:'),
-        h('img', { src: data.get('logo'), style: { maxWidth: '150px', marginTop: '0.5rem' } })
-      ) : null
+      h('h3', f('name'), data.get('name') || ''),
+      h('p', f('tagline', { style: { margin: '0.75rem 0 1.5rem', maxWidth: '40rem' } }), data.get('tagline') || ''),
+      h('p', f('copyright_year', { style: { color: 'var(--grey-mid)', fontSize: '0.9rem' } }),
+        '© ' + (data.get('copyright_year') || '') + ' ' + (data.get('name') || '') + '. All rights reserved.')
     );
   }
 });
