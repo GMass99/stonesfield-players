@@ -169,15 +169,35 @@ setInterval(function() {
       '</a>';
     top.parentElement.insertBefore(box, top.nextSibling);
 
-    if (s.footer) {
-      var frame = box.querySelector('iframe');
-      frame.addEventListener('load', function () {
-        try {
-          var w = frame.contentWindow;
-          w.scrollTo(0, w.document.documentElement.scrollHeight);
-        } catch (e) {}
-      });
-    }
+    var frame = box.querySelector('iframe');
+    var wrap = box.querySelector('.sp-page-preview-frame');
+    frame.addEventListener('load', function () {
+      try {
+        var doc = frame.contentDocument;
+        var win = frame.contentWindow;
+
+        // Site Settings: just show the footer
+        if (s.footer) {
+          win.scrollTo(0, doc.documentElement.scrollHeight);
+          return;
+        }
+
+        // Show the whole page, so you can scroll down through it. The site's
+        // top section is sized to the screen height, so pin it to a normal
+        // screen size here (preview only), or the page would keep growing.
+        var pin = doc.createElement('style');
+        pin.textContent = '.hero { min-height: 760px !important; }';
+        doc.head.appendChild(pin);
+
+        var fit = function () {
+          var h = Math.min(doc.body.scrollHeight, 20000);
+          wrap.style.height = Math.ceil(h * 0.5) + 'px';
+        };
+        fit();
+        if (win.ResizeObserver) new win.ResizeObserver(fit).observe(doc.body);
+        setTimeout(fit, 1500);
+      } catch (e) {}
+    });
   }
 
   window.addEventListener('hashchange', update);
