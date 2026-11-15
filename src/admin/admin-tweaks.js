@@ -120,3 +120,56 @@ setInterval(function() {
     setTimeout(function () { highlight(currentPath, false); }, 60);
   });
 })();
+
+// ============================================================
+// Each section is a single page, so:
+//  - clicking a page in the left-hand list opens it straight away, with its
+//    preview, instead of the in-between "Click to edit" screen
+//  - if you do land on that screen (after logging in, or using the back
+//    arrow), it shows how the page looks on the website right now
+// ============================================================
+(function () {
+  var SECTIONS = {
+    home:     { entry: 'home',     url: '/' },
+    about:    { entry: 'about',    url: '/about/' },
+    whats_on: { entry: 'whats_on', url: '/events/' },
+    contact:  { entry: 'contact',  url: '/contact/' },
+    settings: { entry: 'site',     url: null }
+  };
+  function editorHash(name) {
+    return '#/collections/' + name + '/entries/' + SECTIONS[name].entry;
+  }
+
+  // Left-hand list of pages: go straight to the page
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href^="#/collections/"]');
+    if (!link || String(link.className).indexOf('SidebarNavLink') === -1) return;
+    var m = link.getAttribute('href').match(/^#\/collections\/([^/]+)\/?$/);
+    if (!m || !SECTIONS[m[1]]) return;
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.hash = editorHash(m[1]);
+  }, true);
+
+  // In-between screen: add a picture of the page as it is now
+  function showPagePreview() {
+    var m = window.location.hash.match(/^#\/collections\/([^/?]+)\/?$/);
+    var section = m && SECTIONS[m[1]];
+    var box = document.getElementById('sp-page-preview');
+    if (!section || !section.url) { if (box) box.remove(); return; }
+    var card = document.querySelector('[class*="ListCard"]');
+    if (!card || !card.parentElement || !card.parentElement.parentElement) return;
+    if (box && box.getAttribute('data-section') === m[1]) return;
+    if (box) box.remove();
+    box = document.createElement('a');
+    box.id = 'sp-page-preview';
+    box.setAttribute('data-section', m[1]);
+    box.href = editorHash(m[1]);
+    box.innerHTML =
+      '<span class="sp-page-preview-label">How this page looks on the website right now. Click it to edit.</span>' +
+      '<span class="sp-page-preview-frame"><iframe src="' + section.url + '" tabindex="-1" title="Page preview"></iframe></span>';
+    var list = card.parentElement;
+    list.parentElement.insertBefore(box, list.nextSibling);
+  }
+  setInterval(showPagePreview, 500);
+})();
