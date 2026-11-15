@@ -19,7 +19,7 @@
         <h4>Follow Us</h4>
         <div class="social-links">
           {% for social in site.social_links %}
-            <a href="{{ social.url }}" target="_blank" rel="noopener" aria-label="{{ social.platform }}">{{ social.icon }}</a>
+            <a href="{{ social.url }}" target="_blank" rel="noopener" aria-label="{{ social.platform }}" title="{{ social.platform }}">{% if socialIcons[social.platform] %}{{ socialIcons[social.platform] | safe }}{% else %}{{ social.icon or (social.platform | first) }}{% endif %}</a>
           {% endfor %}
         </div>
       </div>

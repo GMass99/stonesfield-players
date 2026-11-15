@@ -1,0 +1,66 @@
+/* Shared styling tweaks for the admin panel (/admin) and its demo (/admin-demo) */
+/* Style collection list entries as cards — applied immediately via CSS */
+/* Target the <li> elements in collection file lists */
+div[class*="Entries"] li,
+ul[class] li[class] {
+  background: #f8f8f6 !important;
+  border: 2px solid #e8e8e6 !important;
+  border-radius: 6px !important;
+  margin: 0.75rem 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+div[class*="Entries"] li:hover,
+ul[class] li[class]:hover {
+  border-color: #c8a96e !important;
+  background: #fff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+}
+
+/* Style the <a> links inside list items */
+div[class*="Entries"] li a,
+ul[class] li[class] a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1.25rem 1.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  text-decoration: none !important;
+  color: #111 !important;
+}
+
+/* Hide the list/grid switcher (and sort controls): each section is a single page */
+[class*="CollectionControlsContainer"] { display: none !important; }
+
+/* Page preview screen (what you see when you pick a page): hide Decap's
+   "Click to edit" card, and show the page itself with one "Edit" button */
+body.sp-preview-screen [class*="CardsGrid"] { display: none !important; }
+#sp-page-preview { margin: 1.25rem 0 3rem; }
+.sp-page-preview-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 0.9rem;
+}
+.sp-page-preview-label { font-size: 0.95rem; color: #555; }
+.sp-edit-button {
+  flex-shrink: 0; background: #c8a96e; color: #111 !important;
+  font-weight: 600; font-size: 0.95rem; padding: 0.65rem 1.1rem;
+  border-radius: 6px; text-decoration: none; white-space: nowrap;
+}
+.sp-edit-button:hover { background: #b08f52; }
+.sp-page-preview-frame {
+  display: block; height: 560px; overflow: hidden;
+  border: 2px solid #e8e8e6; border-radius: 6px; background: #fff;
+}
+.sp-page-preview-frame:hover { border-color: #c8a96e; }
+.sp-page-preview-frame iframe {
+  width: 200%; height: 200%; border: 0;
+  transform: scale(0.5); transform-origin: 0 0; pointer-events: none;
+}

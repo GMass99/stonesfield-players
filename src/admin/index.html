@@ -4,75 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stonesfield Players — Admin</title>
-  <style>
-    /* Style collection list entries as cards — applied immediately via CSS */
-    /* Target the <li> elements in collection file lists */
-    div[class*="Entries"] li,
-    ul[class] li[class] {
-      background: #f8f8f6 !important;
-      border: 2px solid #e8e8e6 !important;
-      border-radius: 6px !important;
-      margin: 0.75rem 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      transition: all 0.2s ease !important;
-      cursor: pointer !important;
-      box-shadow: none !important;
-    }
-
-    div[class*="Entries"] li:hover,
-    ul[class] li[class]:hover {
-      border-color: #c8a96e !important;
-      background: #fff !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
-    }
-
-    /* Style the <a> links inside list items */
-    div[class*="Entries"] li a,
-    ul[class] li[class] a {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      padding: 1.25rem 1.5rem !important;
-      font-size: 1.1rem !important;
-      font-weight: 600 !important;
-      width: 100% !important;
-      background: transparent !important;
-      border: none !important;
-      text-decoration: none !important;
-      color: #111 !important;
-    }
-  </style>
+  <link rel="stylesheet" href="/admin/admin-tweaks.css">
 </head>
 <body>
   <!-- DecapBridge PKCE login needs Decap CMS 3.8.3 or newer -->
   <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
+  <script src="/admin/social-icons.js"></script>
   <script src="/admin/preview.js"></script>
-  <script>
-    setInterval(function() {
-      // Hide "Sort by" bar
-      var spans = document.querySelectorAll('span');
-      for (var i = 0; i < spans.length; i++) {
-        if (spans[i].textContent.trim() === 'Sort by') {
-          var row = spans[i].closest('div');
-          if (row && row.parentElement) {
-            row.parentElement.style.display = 'none';
-          }
-        }
-      }
-
-      // Add "Click to edit →" hint to collection entries
-      var listItems = document.querySelectorAll('li[class] a[href*="/entries/"]');
-      for (var j = 0; j < listItems.length; j++) {
-        var link = listItems[j];
-        if (link.dataset.hinted) continue;
-        link.dataset.hinted = '1';
-        var arrow = document.createElement('span');
-        arrow.textContent = 'Click to edit \u2192';
-        arrow.style.cssText = 'font-size:0.85rem;color:#c8a96e;font-weight:500;white-space:nowrap;';
-        link.appendChild(arrow);
-      }
-    }, 500);
-  </script>
+  <script src="/admin/admin-tweaks.js"></script>
 </body>
 </html>
