@@ -387,9 +387,13 @@ var SitePreview = createClass({
         h('h4', { style: { marginBottom: '0.75rem' } }, 'Follow Us'),
         socials ? socials.map(function(s, i) {
           var p = 'social_links.' + i;
+          // Logos come from /admin/social-icons.js (built from src/_data/socialIcons.js)
+          var logo = (window.SP_SOCIAL_ICONS || {})[val(s, 'platform')];
           return h('div', f(p, { key: i, style: { display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '0.6rem' } }),
-            h('span', f(p + '.icon', { style: { fontSize: '1.4rem' } }), val(s, 'icon')),
-            h('strong', f(p + '.platform'), val(s, 'platform')),
+            h('span', f(p + '.platform', { className: 'sp-social-logo' }),
+              logo ? h('span', { dangerouslySetInnerHTML: { __html: logo } }) : null,
+              h('strong', null, val(s, 'platform'))
+            ),
             h('span', f(p + '.handle'), val(s, 'handle')),
             h('span', f(p + '.url', { style: { color: 'var(--grey-mid)', fontSize: '0.85rem' } }), val(s, 'url'))
           );

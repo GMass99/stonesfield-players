@@ -242,3 +242,30 @@ document.addEventListener('click', function (e) {
   var toggle = bar.querySelector('button');
   if (toggle) toggle.click();
 });
+
+// ============================================================
+// Lists with a limit ("max" in config.yml): hide the "Add" button once the
+// list is full, so nobody adds an item that can't be saved. The button comes
+// back if an item is deleted.
+// ============================================================
+(function () {
+  var LIST_MAX = { features: 3 }; // keep in step with "max" in config.yml
+
+  setInterval(function () {
+    var labels = document.querySelectorAll('[class*="ControlPaneContainer"] label[for]');
+    for (var i = 0; i < labels.length; i++) {
+      var max = LIST_MAX[labels[i].htmlFor.replace(/-field-\d+$/, '')];
+      if (!max) continue;
+      var cc = labels[i].closest('[class*="ControlContainer"]');
+      var bar = cc && cc.querySelector('[class*="TopBarContainer"]');
+      if (!bar) continue;
+      var count = parseInt(bar.textContent, 10) || 0; // the bar reads e.g. "3 feature boxes"
+      var buttons = bar.querySelectorAll('button');
+      for (var j = 0; j < buttons.length; j++) {
+        if (/^\s*Add\b/i.test(buttons[j].textContent)) {
+          buttons[j].style.display = count >= max ? 'none' : '';
+        }
+      }
+    }
+  }, 300);
+})();

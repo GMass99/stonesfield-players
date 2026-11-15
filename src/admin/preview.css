@@ -395,3 +395,7 @@ section { padding: 5rem 0; }
   width: 100%; aspect-ratio: 16/9; margin-bottom: 1.25rem;
   border: 2px dashed #c8c8c4; color: #999; font-size: 0.85rem;
 }
+
+/* Social media logos in the Site Settings preview */
+.sp-social-logo { display: inline-flex; align-items: center; gap: 0.5rem; }
+.sp-social-logo .social-icon { display: block; width: 22px; height: 22px; }

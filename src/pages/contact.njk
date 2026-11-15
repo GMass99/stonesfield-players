@@ -42,7 +42,7 @@ permalink: /contact/
 
         {% for social in site.social_links %}
         <div class="contact-item">
-          <div class="icon">{{ social.icon }}</div>
+          <div class="icon">{% if socialIcons[social.platform] %}{{ socialIcons[social.platform] | safe }}{% else %}{{ social.icon }}{% endif %}</div>
           <div>
             <h4>{{ social.platform }}</h4>
             <a href="{{ social.url }}" target="_blank" rel="noopener">{{ social.handle }}</a>
