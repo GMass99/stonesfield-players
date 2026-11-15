@@ -1,0 +1,38 @@
+/* Shared styling tweaks for the admin panel (/admin) and its demo (/admin-demo) */
+/* Style collection list entries as cards — applied immediately via CSS */
+/* Target the <li> elements in collection file lists */
+div[class*="Entries"] li,
+ul[class] li[class] {
+  background: #f8f8f6 !important;
+  border: 2px solid #e8e8e6 !important;
+  border-radius: 6px !important;
+  margin: 0.75rem 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+div[class*="Entries"] li:hover,
+ul[class] li[class]:hover {
+  border-color: #c8a96e !important;
+  background: #fff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+}
+
+/* Style the <a> links inside list items */
+div[class*="Entries"] li a,
+ul[class] li[class] a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1.25rem 1.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  text-decoration: none !important;
+  color: #111 !important;
+}

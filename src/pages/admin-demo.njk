@@ -1,0 +1,44 @@
+---
+permalink: /admin-demo/index.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex">
+  <title>Stonesfield Players — Admin (demo)</title>
+  <link rel="stylesheet" href="/admin/admin-tweaks.css">
+  <style>
+    #demo-badge {
+      position: fixed; left: 16px; bottom: 16px; z-index: 99999;
+      background: #c8a96e; color: #111; max-width: 270px;
+      font: 600 14px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 10px 14px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+  </style>
+</head>
+<body>
+  <div id="demo-badge">Demo mode: try anything you like. Nothing here is saved or put on the website.</div>
+
+  <script>
+    // Demo only: Decap's in-memory "test-repo" backend, pre-filled with the
+    // site's current content. Edits live in this browser tab and vanish on refresh.
+    window.CMS_MANUAL_INIT = true;
+    window.repoFiles = { src: { _data: {
+      "home.json":        { content: JSON.stringify({{ home | dump | replace("</", "<\\/") | safe }}, null, 2) },
+      "about.json":       { content: JSON.stringify({{ about | dump | replace("</", "<\\/") | safe }}, null, 2) },
+      "events_page.json": { content: JSON.stringify({{ events_page | dump | replace("</", "<\\/") | safe }}, null, 2) },
+      "contact.json":     { content: JSON.stringify({{ contact | dump | replace("</", "<\\/") | safe }}, null, 2) },
+      "site.json":        { content: JSON.stringify({{ site | dump | replace("</", "<\\/") | safe }}, null, 2) }
+    } } };
+  </script>
+  <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
+  <script src="/admin/preview.js"></script>
+  <script src="/admin/admin-tweaks.js"></script>
+  <script>
+    CMS.init({ config: {{ demoCmsConfig | dump | replace("</", "<\\/") | safe }} });
+  </script>
+</body>
+</html>
