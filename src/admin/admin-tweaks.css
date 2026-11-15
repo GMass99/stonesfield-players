@@ -40,14 +40,26 @@ ul[class] li[class] a {
 /* Hide the list/grid switcher (and sort controls): each section is a single page */
 [class*="CollectionControlsContainer"] { display: none !important; }
 
-/* On the in-between screen, show how the page looks on the website right now */
-#sp-page-preview { display: block; margin: 1.5rem 0 3rem; text-decoration: none; color: #555; }
-.sp-page-preview-label { display: block; font-size: 0.95rem; margin-bottom: 0.75rem; }
+/* Page preview screen (what you see when you pick a page): hide Decap's
+   "Click to edit" card, and show the page itself with one "Edit" button */
+body.sp-preview-screen [class*="CardsGrid"] { display: none !important; }
+#sp-page-preview { margin: 1.25rem 0 3rem; }
+.sp-page-preview-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 0.9rem;
+}
+.sp-page-preview-label { font-size: 0.95rem; color: #555; }
+.sp-edit-button {
+  flex-shrink: 0; background: #c8a96e; color: #111 !important;
+  font-weight: 600; font-size: 0.95rem; padding: 0.65rem 1.1rem;
+  border-radius: 6px; text-decoration: none; white-space: nowrap;
+}
+.sp-edit-button:hover { background: #b08f52; }
 .sp-page-preview-frame {
   display: block; height: 560px; overflow: hidden;
   border: 2px solid #e8e8e6; border-radius: 6px; background: #fff;
 }
-#sp-page-preview:hover .sp-page-preview-frame { border-color: #c8a96e; }
+.sp-page-preview-frame:hover { border-color: #c8a96e; }
 .sp-page-preview-frame iframe {
   width: 200%; height: 200%; border: 0;
   transform: scale(0.5); transform-origin: 0 0; pointer-events: none;

@@ -122,11 +122,10 @@ setInterval(function() {
 })();
 
 // ============================================================
-// Each section is a single page, so:
-//  - clicking a page in the left-hand list opens it straight away, with its
-//    preview, instead of the in-between "Click to edit" screen
-//  - if you do land on that screen (after logging in, or using the back
-//    arrow), it shows how the page looks on the website right now
+// Look first, then edit.
+// Picking a page in the left-hand list shows how that page looks on the
+// website right now, with one "Edit this page" button. The editor's back
+// arrow returns here, and you land on the Home page's screen after logging in.
 // ============================================================
 (function () {
   var SECTIONS = {
@@ -134,43 +133,53 @@ setInterval(function() {
     about:    { entry: 'about',    url: '/about/' },
     whats_on: { entry: 'whats_on', url: '/events/' },
     contact:  { entry: 'contact',  url: '/contact/' },
-    settings: { entry: 'site',     url: null }
+    settings: {
+      entry: 'site', url: '/', footer: true,
+      label: 'These settings appear in the footer at the bottom of every page. This is how it looks right now:',
+      button: 'Edit settings \u2192'
+    }
   };
-  function editorHash(name) {
-    return '#/collections/' + name + '/entries/' + SECTIONS[name].entry;
-  }
 
-  // Left-hand list of pages: go straight to the page
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest && e.target.closest('a[href^="#/collections/"]');
-    if (!link || String(link.className).indexOf('SidebarNavLink') === -1) return;
-    var m = link.getAttribute('href').match(/^#\/collections\/([^/]+)\/?$/);
-    if (!m || !SECTIONS[m[1]]) return;
-    e.preventDefault();
-    e.stopPropagation();
-    window.location.hash = editorHash(m[1]);
-  }, true);
-
-  // In-between screen: add a picture of the page as it is now
-  function showPagePreview() {
+  function update() {
     var m = window.location.hash.match(/^#\/collections\/([^/?]+)\/?$/);
-    var section = m && SECTIONS[m[1]];
+    var name = m && SECTIONS[m[1]] ? m[1] : null;
+    document.body.classList.toggle('sp-preview-screen', !!name);
+
     var box = document.getElementById('sp-page-preview');
-    if (!section || !section.url) { if (box) box.remove(); return; }
-    var card = document.querySelector('[class*="ListCard"]');
-    if (!card || !card.parentElement || !card.parentElement.parentElement) return;
-    if (box && box.getAttribute('data-section') === m[1]) return;
+    if (!name) { if (box) box.remove(); return; }
+    if (box && box.getAttribute('data-section') === name) return;
+
+    var top = document.querySelector('[class*="CollectionTopContainer"]');
+    if (!top || !top.parentElement) return;
     if (box) box.remove();
-    box = document.createElement('a');
+
+    var s = SECTIONS[name];
+    var editHref = '#/collections/' + name + '/entries/' + s.entry;
+    box = document.createElement('div');
     box.id = 'sp-page-preview';
-    box.setAttribute('data-section', m[1]);
-    box.href = editorHash(m[1]);
+    box.setAttribute('data-section', name);
+    box.style.maxWidth = Math.round(top.getBoundingClientRect().width) + 'px';
     box.innerHTML =
-      '<span class="sp-page-preview-label">How this page looks on the website right now. Click it to edit.</span>' +
-      '<span class="sp-page-preview-frame"><iframe src="' + section.url + '" tabindex="-1" title="Page preview"></iframe></span>';
-    box.style.maxWidth = Math.round(card.getBoundingClientRect().width) + 'px';
-    var list = card.parentElement;
-    list.parentElement.insertBefore(box, list.nextSibling);
+      '<div class="sp-page-preview-head">' +
+        '<span class="sp-page-preview-label">' + (s.label || 'How this page looks on the website right now:') + '</span>' +
+        '<a class="sp-edit-button" href="' + editHref + '">' + (s.button || 'Edit this page \u2192') + '</a>' +
+      '</div>' +
+      '<a class="sp-page-preview-frame" href="' + editHref + '" aria-label="Edit this page">' +
+        '<iframe src="' + s.url + '" tabindex="-1" title="How the page looks now"></iframe>' +
+      '</a>';
+    top.parentElement.insertBefore(box, top.nextSibling);
+
+    if (s.footer) {
+      var frame = box.querySelector('iframe');
+      frame.addEventListener('load', function () {
+        try {
+          var w = frame.contentWindow;
+          w.scrollTo(0, w.document.documentElement.scrollHeight);
+        } catch (e) {}
+      });
+    }
   }
-  setInterval(showPagePreview, 500);
+
+  window.addEventListener('hashchange', update);
+  setInterval(update, 300);
 })();
