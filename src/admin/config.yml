@@ -271,7 +271,7 @@ collections:
               - { name: "title", label: "Show name", widget: "string" }
               - { name: "date_label", label: "When", widget: "string", hint: "e.g. 'June 2026' or 'Pantomime'" }
               - { name: "description", label: "About the show", widget: "text" }
-              - { name: "poster", label: "Poster (optional)", widget: "image", required: false }
+              - { name: "poster", label: "Poster", widget: "image", required: false }
               - name: "photos"
                 label: "Photos"
                 label_singular: "photo"
@@ -280,8 +280,8 @@ collections:
                 hint: "Use 'Add photo' for each one. Your best 10 or so is plenty; put a link to the rest below."
                 fields:
                   - { name: "image", label: "Photo", widget: "image" }
-                  - { name: "caption", label: "Caption (optional)", widget: "string", required: false }
-              - { name: "album_url", label: "Link to the full album (optional)", widget: "string", required: false, hint: "e.g. a Google Photos or Facebook album" }
+                  - { name: "caption", label: "Caption", widget: "string", required: false }
+              - { name: "album_url", label: "Link to the full album", widget: "string", required: false, hint: "e.g. a Google Photos or Facebook album" }
 
   # ============================================================
   # CONTACT
@@ -340,7 +340,7 @@ collections:
                 hint: "Use 'Add photo', then choose a picture from your computer."
                 fields:
                   - { name: "image", label: "Photo", widget: "image" }
-                  - { name: "caption", label: "Caption (optional)", widget: "string", required: false }
+                  - { name: "caption", label: "Caption", widget: "string", required: false }
 
   # ============================================================
   # SITE SETTINGS
