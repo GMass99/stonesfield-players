@@ -1,0 +1,96 @@
+---
+layout: layouts/base.njk
+currentPage: archive
+pagination:
+  data: archiveShows
+  size: 1
+  alias: show
+  addAllPagesToCollections: true
+permalink: "/archive/{{ show.slug }}/"
+eleventyComputed:
+  pageTitle: "{{ show.title }} — Archive — Stonesfield Players"
+  metaDescription: "{{ show.description | truncate(155) }}"
+---
+
+<!-- ONE PAST PRODUCTION: poster, write-up and photos -->
+<section class="archive-show">
+  <div class="container">
+    <a href="/archive/" class="archive-back">&larr; Back to the archive</a>
+
+    <div class="archive-show-intro{% if not show.posterImg %} no-poster{% endif %}">
+      {% if show.posterImg %}
+      <a href="{{ show.posterImg | largest }}" class="archive-poster" data-viewer data-caption="{{ show.title }} poster">
+        {{ show.posterImg | picture(show.title ~ " poster", "(max-width: 768px) 90vw, 320px") | safe }}
+      </a>
+      {% endif %}
+      <div>
+        <div class="year">{{ show.date_label }}</div>
+        <h1>{{ show.title }}</h1>
+        <p>{{ show.description }}</p>
+        {% if show.album_url %}
+        <a href="{{ show.album_url }}" class="btn" target="_blank" rel="noopener">See the full album</a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if show.photos.length %}
+    <div class="archive-photos">
+      {% for photo in show.photos %}
+      <a href="{{ photo.img | largest }}" class="archive-photo" data-viewer data-caption="{{ photo.caption }}">
+        {{ photo.img | picture(photo.caption or (show.title ~ " photo " ~ loop.index), "(max-width: 768px) 45vw, 270px") | safe }}
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="archive-empty">Photos coming soon.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Full-size photo viewer (without JavaScript, the links just open the photo) -->
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+  <button type="button" class="lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button type="button" class="lightbox-next" aria-label="Next photo">&rsaquo;</button>
+</dialog>
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('[data-viewer]'));
+    var box = document.getElementById('lightbox');
+    if (!links.length || !box || typeof box.showModal !== 'function') return;
+    var img = box.querySelector('img');
+    var caption = box.querySelector('figcaption');
+    var current = 0;
+
+    function show(i) {
+      current = (i + links.length) % links.length;
+      var link = links[current];
+      img.src = link.getAttribute('href');
+      img.alt = link.dataset.caption || '';
+      caption.textContent = link.dataset.caption || '';
+    }
+
+    links.forEach(function (link, i) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        show(i);
+        box.showModal();
+      });
+    });
+    if (links.length < 2) {
+      box.querySelector('.lightbox-prev').hidden = true;
+      box.querySelector('.lightbox-next').hidden = true;
+    }
+    box.querySelector('.lightbox-prev').addEventListener('click', function () { show(current - 1); });
+    box.querySelector('.lightbox-next').addEventListener('click', function () { show(current + 1); });
+    box.querySelector('.lightbox-close').addEventListener('click', function () { box.close(); });
+    // Clicking the dark area around the photo closes it (Escape does too)
+    box.addEventListener('click', function (e) { if (e.target === box) box.close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!box.open) return;
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+  })();
+</script>

@@ -181,7 +181,6 @@ var AboutPreview = createClass({
     var timelineSection = entry.getIn(['data', 'timeline_section']);
     var timeline = entry.getIn(['data', 'timeline']);
     var prodSection = entry.getIn(['data', 'productions_section']);
-    var productions = entry.getIn(['data', 'productions']);
     var cta = entry.getIn(['data', 'cta']);
 
     return h('div', {},
@@ -256,19 +255,7 @@ var AboutPreview = createClass({
           h('h2', f('productions_section.heading'), val(prodSection, 'heading'))
         ),
         h('div', { className: 'container' },
-          h('div', f('productions', { className: 'productions-grid' }),
-            productions ? productions.map(function(prod, i) {
-              var p = 'productions.' + i;
-              return h('div', f(p, { className: 'production-card', key: i }),
-                prod.get('image')
-                  ? h('img', f(p + '.image', { src: assetUrl(props, prod.get('image')), style: { width: '100%', aspectRatio: '16/9', objectFit: 'cover', marginBottom: '1.25rem' } }))
-                  : h('div', f(p + '.image', { className: 'sp-photo-slot' }), 'No photo yet'),
-                h('div', f(p + '.date_label', { className: 'year' }), val(prod, 'date_label')),
-                h('h3', f(p + '.title'), val(prod, 'title')),
-                h('p', f(p + '.description'), val(prod, 'description'))
-              );
-            }).toArray() : null
-          )
+          h('p', { className: 'sp-hidden-note' }, 'The latest three productions from the Archive appear here. Edit them under Archive in the menu.')
         )
       ),
 
@@ -416,8 +403,60 @@ var SitePreview = createClass({
 // ============================================================
 CMS.registerPreviewStyle('/admin/preview.css?v=' + (window.SP_BUILD || ''));
 
+// ============================================================
+// ARCHIVE (each past production shown like its own page, one after another)
+// ============================================================
+var ArchivePreview = createClass({
+  render: function() {
+    var props = this.props;
+    var data = props.entry.get('data');
+    var header = data.get('page_header');
+    var productions = data.get('productions');
+
+    return h('div', {},
+      h('section', f('page_header', { className: 'page-header' }),
+        h('div', { className: 'container' },
+          h('p', f('page_header.subtitle', { className: 'section-subtitle' }), val(header, 'subtitle')),
+          h('h1', f('page_header.title'), val(header, 'title')),
+          h('p', f('page_header.description'), val(header, 'description'))
+        )
+      ),
+      h('section', {},
+        h('div', f('productions', { className: 'container' }),
+          productions ? productions.map(function(prod, i) {
+            var p = 'productions.' + i;
+            var photos = prod.get('photos');
+            return h('div', f(p, { key: i, className: 'sp-archive-show' }),
+              h('div', { className: 'archive-show-intro' },
+                prod.get('poster')
+                  ? h('img', f(p + '.poster', { className: 'sp-archive-poster', src: assetUrl(props, prod.get('poster')) }))
+                  : h('div', f(p + '.poster', { className: 'sp-photo-slot sp-poster-slot' }), 'No poster yet'),
+                h('div', {},
+                  h('div', f(p + '.date_label', { className: 'year' }), val(prod, 'date_label')),
+                  h('h2', f(p + '.title'), val(prod, 'title')),
+                  h('p', f(p + '.description'), val(prod, 'description')),
+                  prod.get('album_url') ? h('span', f(p + '.album_url', { className: 'btn' }), 'See the full album') : null
+                )
+              ),
+              h('div', f(p + '.photos', { className: 'archive-photos' }),
+                photos && photos.size ? photos.map(function(photo, j) {
+                  var q = p + '.photos.' + j;
+                  return h('div', f(q, { key: j, className: 'archive-photo' }),
+                    h('img', f(q + '.image', { src: assetUrl(props, photo.get('image')) }))
+                  );
+                }).toArray() : h('div', { className: 'sp-photo-slot' }, 'No photos yet')
+              )
+            );
+          }).toArray() : null
+        )
+      )
+    );
+  }
+});
+
 CMS.registerPreviewTemplate('home', HomePreview);
 CMS.registerPreviewTemplate('about', AboutPreview);
 CMS.registerPreviewTemplate('whats_on', WhatsOnPreview);
+CMS.registerPreviewTemplate('archive', ArchivePreview);
 CMS.registerPreviewTemplate('contact', ContactPreview);
 CMS.registerPreviewTemplate('site', SitePreview);

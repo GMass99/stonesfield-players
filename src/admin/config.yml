@@ -171,20 +171,10 @@ collections:
             label: "Heading above past productions"
             widget: "object"
             collapsed: true
+            hint: "The shows themselves are edited under Archive. The latest three appear on this page."
             fields:
               - { name: "subtitle", label: "Small text", widget: "string" }
               - { name: "heading", label: "Heading", widget: "string" }
-          - name: "productions"
-            label: "Past productions"
-            label_singular: "production"
-            widget: "list"
-            summary: "{{fields.title}} ({{fields.date_label}})"
-            hint: "Click a production to open it. Use 'Add production' for a new one, and drag it to the top if it's the latest."
-            fields:
-              - { name: "date_label", label: "When", widget: "string", hint: "e.g. 'November 2025' or 'Pantomime'" }
-              - { name: "title", label: "Show name", widget: "string" }
-              - { name: "description", label: "About the show", widget: "text" }
-              - { name: "image", label: "Photo (optional)", widget: "image", required: false }
           - name: "cta"
             label: "Box at the bottom of the page"
             widget: "object"
@@ -251,6 +241,47 @@ collections:
               - { name: "description", label: "Text", widget: "text" }
               - { name: "button_text", label: "Button text", widget: "string" }
               - { name: "button_url", label: "Button goes to", widget: "string" }
+
+  # ============================================================
+  # ARCHIVE (past productions, with posters and photos)
+  # ============================================================
+  - name: "archive"
+    label: "🗂️ Archive"
+    description: "Past productions, with their posters and photos."
+    files:
+      - name: "archive"
+        label: "Archive"
+        file: "src/_data/archive.json"
+        fields:
+          - name: "page_header"
+            label: "Heading at the top of the page"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { name: "subtitle", label: "Small text", widget: "string" }
+              - { name: "title", label: "Heading", widget: "string" }
+              - { name: "description", label: "Text under the heading", widget: "text" }
+          - name: "productions"
+            label: "Past productions"
+            label_singular: "production"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.date_label}})"
+            hint: "Newest at the top. Click a production to open it, or use 'Add production' for a new one and drag it to the top."
+            fields:
+              - { name: "title", label: "Show name", widget: "string" }
+              - { name: "date_label", label: "When", widget: "string", hint: "e.g. 'June 2026' or 'Pantomime'" }
+              - { name: "description", label: "About the show", widget: "text" }
+              - { name: "poster", label: "Poster (optional)", widget: "image", required: false }
+              - name: "photos"
+                label: "Photos"
+                label_singular: "photo"
+                widget: "list"
+                required: false
+                hint: "Use 'Add photo' for each one. Your best 10 or so is plenty; put a link to the rest below."
+                fields:
+                  - { name: "image", label: "Photo", widget: "image" }
+                  - { name: "caption", label: "Caption (optional)", widget: "string", required: false }
+              - { name: "album_url", label: "Link to the full album (optional)", widget: "string", required: false, hint: "e.g. a Google Photos or Facebook album" }
 
   # ============================================================
   # CONTACT

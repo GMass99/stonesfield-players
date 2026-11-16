@@ -405,3 +405,14 @@ section { padding: 5rem 0; }
 .contact-email h3 { margin-bottom: 1rem; }
 .contact-email p { color: var(--grey-dark); font-size: 0.95rem; }
 .contact-email-address { display: block; margin: 1.5rem 0 2rem; font-family: var(--font-heading); font-size: 1.35rem; overflow-wrap: anywhere; color: var(--black); }
+
+/* Archive preview: each production shown like its own page */
+.sp-archive-show { padding: 2.5rem 0; border-bottom: 1px solid var(--grey-light); }
+.archive-show-intro { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; }
+.sp-archive-poster { width: 100%; height: auto; display: block; border: 1px solid var(--grey-light); }
+.sp-poster-slot { aspect-ratio: 3/4; }
+.sp-archive-show .year { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.35rem; }
+.sp-archive-show h2 { margin-bottom: 0.75rem; }
+.sp-archive-show p { color: var(--grey-dark); margin-bottom: 1rem; white-space: pre-line; }
+.archive-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+.archive-photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }

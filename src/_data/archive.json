@@ -1,0 +1,70 @@
+{
+  "page_header": {
+    "subtitle": "Since 1953",
+    "title": "The Archive",
+    "description": "Posters, photos and memories from our past productions."
+  },
+  "productions": [
+    {
+      "title": "Mercy of Sisters",
+      "date_label": "June 2026",
+      "description": "A comedy-drama about unpaid caring, intergenerational trauma and family resentments.",
+      "poster": "",
+      "photos": [
+        {
+          "image": "/images/_lybtukg-2-2.jpg",
+          "caption": ""
+        }
+      ],
+      "album_url": ""
+    },
+    {
+      "title": "Cold Comfort Farm",
+      "date_label": "November 2025",
+      "description": "Stella Gibbons' brilliantly funny portrayal of English rural life in the 1930s, dramatised by Paul Doust and directed by Becki Sherlaw-Johnson.",
+      "poster": "",
+      "photos": [],
+      "album_url": ""
+    },
+    {
+      "title": "The Private Collection",
+      "date_label": "Previous Production",
+      "description": "An original play written by Becki Sherlaw-Johnson and David Lines. Featuring Katie Saville and Ruth Thornburn.",
+      "poster": "",
+      "photos": [],
+      "album_url": ""
+    },
+    {
+      "title": "Plaza Suite",
+      "date_label": "Previous Production",
+      "description": "Neil Simon's classic comedy, featuring Beth Binnian, Mark Saville and Alison Richards.",
+      "poster": "",
+      "photos": [],
+      "album_url": ""
+    },
+    {
+      "title": "Twelfth Night",
+      "date_label": "Classic Production",
+      "description": "Shakespeare's beloved comedy — one of many classic works the Players have performed over the decades.",
+      "poster": "",
+      "photos": [],
+      "album_url": ""
+    },
+    {
+      "title": "Mother Goose",
+      "date_label": "Pantomime",
+      "description": "One of several pantomimes the Players have produced, delighting audiences young and old.",
+      "poster": "",
+      "photos": [],
+      "album_url": ""
+    },
+    {
+      "title": "Original One-Act Play",
+      "date_label": "1990s",
+      "description": "A world premiere of a one-act play by Sally Wainwright, performed by the Players.",
+      "poster": "",
+      "photos": [],
+      "album_url": ""
+    }
+  ]
+}

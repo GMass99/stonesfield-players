@@ -2,5 +2,6 @@
   { "label": "Home", "url": "/", "page": "index" },
   { "label": "About Us", "url": "/about/", "page": "about" },
   { "label": "What's On", "url": "/events/", "page": "events" },
+  { "label": "Archive", "url": "/archive/", "page": "archive" },
   { "label": "Contact", "url": "/contact/", "page": "contact" }
 ]

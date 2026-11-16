@@ -717,6 +717,276 @@ nav {
   text-align: left;
 }
 
+/* ===== ARCHIVE ===== */
+.production-card-link {
+  display: block;
+  color: inherit;
+}
+
+.production-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin-bottom: 1.25rem;
+}
+
+.production-card-image.is-poster {
+  object-fit: contain;
+  background: var(--off-white);
+}
+
+.archive-link {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2.5rem 1.5rem;
+}
+
+.archive-card {
+  display: block;
+  color: inherit;
+}
+
+.archive-card-image {
+  aspect-ratio: 3/4;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background: var(--off-white);
+  border: 1px solid var(--grey-light);
+  transition: border-color var(--transition);
+}
+
+.archive-card:hover .archive-card-image {
+  border-color: var(--accent);
+}
+
+.archive-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.archive-card:hover .archive-card-image img {
+  transform: scale(1.03);
+}
+
+.archive-card-blank {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: var(--grey-mid);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.archive-card-blank .mask {
+  font-size: 2rem;
+}
+
+.archive-card .year,
+.archive-show .year {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.archive-card h3 {
+  font-size: 1.15rem;
+}
+
+.archive-show {
+  padding-top: 9rem;
+}
+
+.archive-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 0.85rem;
+  color: var(--grey-dark);
+}
+
+.archive-back:hover {
+  color: var(--accent);
+}
+
+.archive-show-intro {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.archive-show-intro.no-poster {
+  grid-template-columns: 1fr;
+  max-width: 700px;
+}
+
+.archive-poster {
+  display: block;
+  border: 1px solid var(--grey-light);
+}
+
+.archive-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.archive-show-intro h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.archive-show-intro p {
+  color: var(--grey-dark);
+  margin-bottom: 1.5rem;
+  white-space: pre-line;
+}
+
+.archive-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 3.5rem;
+}
+
+.archive-photo {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--grey-light);
+}
+
+.archive-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.archive-photo:hover img {
+  transform: scale(1.03);
+}
+
+.archive-empty {
+  margin-top: 3rem;
+  color: var(--grey-mid);
+}
+
+/* Full-size photo viewer */
+.lightbox {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(17, 17, 17, 0.94);
+  color: var(--white);
+}
+
+.lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox::backdrop {
+  background: rgba(17, 17, 17, 0.94);
+}
+
+.lightbox figure {
+  margin: 0;
+  text-align: center;
+}
+
+.lightbox img {
+  display: block;
+  max-width: 86vw;
+  max-height: 80vh;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.lightbox figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--grey-light);
+}
+
+.lightbox button {
+  position: absolute;
+  padding: 1rem;
+  background: none;
+  border: 0;
+  color: var(--white);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.lightbox button:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.lightbox-close {
+  top: 1rem;
+  right: 1rem;
+}
+
+.lightbox-prev {
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox [hidden] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+  }
+
+  .archive-show-intro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .archive-poster {
+    max-width: 320px;
+  }
+
+  .archive-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+}
+
 /* ===== FOOTER ===== */
 footer {
   background: var(--black);
