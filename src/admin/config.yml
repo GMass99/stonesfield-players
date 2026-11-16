@@ -287,11 +287,14 @@ collections:
             fields:
               - { name: "heading", label: "Heading", widget: "string" }
               - { name: "text", label: "Text", widget: "text" }
-          - name: "form_subjects"
-            label: "Contact form subject choices"
-            label_singular: "choice"
-            widget: "list"
-            field: { name: "subject", label: "Choice", widget: "string" }
+          - name: "email_box"
+            label: "'Email us' box"
+            widget: "object"
+            collapsed: true
+            hint: "The box beside the contact details. It shows the group email address and an Email Us button."
+            fields:
+              - { name: "heading", label: "Heading", widget: "string" }
+              - { name: "text", label: "Text", widget: "text" }
           - name: "gallery"
             label: "Photo gallery"
             widget: "object"

@@ -56,32 +56,12 @@ permalink: /contact/
         </div>
       </div>
 
-      <!-- Contact Form -->
-      <div class="contact-form">
-        <h3>Send Us a Message</h3>
-        <form action="#" method="POST">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="jane@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="subject">I'm Interested In</label>
-            <select id="subject" name="subject">
-              {% for subject in contact.form_subjects %}
-                <option value="{{ subject | lower | replace(' ', '_') }}">{{ subject }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+      <!-- Email us -->
+      <div class="contact-email">
+        <h3>{{ contact.email_box.heading }}</h3>
+        <p>{{ contact.email_box.text }}</p>
+        <a href="mailto:{{ contact.email }}" class="contact-email-address">{{ contact.email }}</a>
+        <a href="mailto:{{ contact.email }}" class="btn btn-primary">Email Us</a>
       </div>
 
     </div>

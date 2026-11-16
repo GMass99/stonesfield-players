@@ -294,7 +294,7 @@ var ContactPreview = createClass({
     var email = entry.getIn(['data', 'email']) || '';
     var venue = entry.getIn(['data', 'venue']);
     var joinBox = entry.getIn(['data', 'join_box']);
-    var subjects = entry.getIn(['data', 'form_subjects']);
+    var emailBox = entry.getIn(['data', 'email_box']);
     var gallery = entry.getIn(['data', 'gallery']);
     var photos = gallery && gallery.get('photos');
 
@@ -339,11 +339,11 @@ var ContactPreview = createClass({
               )
             ),
 
-            h('div', { className: 'contact-form' },
-              h('h3', {}, 'Send Us a Message'),
-              h('p', f('form_subjects', { style: { color: 'var(--grey-mid)', fontSize: '0.9rem' } }),
-                'Subject choices: ' + (subjects ? subjects.toArray().join(' · ') : '')
-              )
+            h('div', f('email_box', { className: 'contact-email' }),
+              h('h3', f('email_box.heading'), val(emailBox, 'heading')),
+              h('p', f('email_box.text'), val(emailBox, 'text')),
+              h('a', { className: 'contact-email-address' }, email),
+              h('span', { className: 'btn btn-primary' }, 'Email Us')
             )
           )
         )
