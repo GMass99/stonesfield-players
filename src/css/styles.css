@@ -726,6 +726,7 @@ nav {
 .production-card-image {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16/9;
   object-fit: cover;
   margin-bottom: 1.25rem;
@@ -872,6 +873,7 @@ nav {
 .archive-photo img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 4/3;
   object-fit: cover;
   transition: transform var(--transition);
@@ -964,6 +966,10 @@ nav {
 
 .lightbox [hidden] {
   display: none;
+}
+
+.lightbox button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 @media (max-width: 768px) {
