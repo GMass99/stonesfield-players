@@ -414,7 +414,7 @@ var SitePreview = createClass({
 // ============================================================
 // REGISTER ALL PREVIEWS
 // ============================================================
-CMS.registerPreviewStyle('/admin/preview.css');
+CMS.registerPreviewStyle('/admin/preview.css?v=' + (window.SP_BUILD || ''));
 
 CMS.registerPreviewTemplate('home', HomePreview);
 CMS.registerPreviewTemplate('about', AboutPreview);

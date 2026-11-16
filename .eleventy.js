@@ -8,6 +8,10 @@ module.exports = function(eleventyConfig) {
   // Cloudflare Pages redirects (old .html addresses from the original site)
   eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
 
+  // Changes on every build. Added to CSS/JS links (?v=...) so browsers fetch
+  // the new files straight after an update instead of a copy cached for hours.
+  eleventyConfig.addGlobalData("buildVersion", () => Date.now().toString(36));
+
   // The admin demo (/admin-demo/) uses the real admin config, but swaps the
   // backend for Decap's in-memory "test-repo", so nothing can ever be saved.
   eleventyConfig.addGlobalData("demoCmsConfig", () => {

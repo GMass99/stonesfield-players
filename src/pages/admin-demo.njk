@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex">
   <title>Stonesfield Players — Admin (demo)</title>
-  <link rel="stylesheet" href="/admin/admin-tweaks.css">
+  <link rel="stylesheet" href="/admin/admin-tweaks.css?v={{ buildVersion }}">
   <style>
     #demo-badge {
       position: fixed; right: 16px; bottom: 16px; z-index: 99999;
@@ -20,6 +20,7 @@ eleventyExcludeFromCollections: true
   </style>
 </head>
 <body>
+  <script>window.SP_BUILD = "{{ buildVersion }}";</script>
   <div id="demo-badge">Demo mode: try anything you like. Nothing here is saved or put on the website.</div>
 
   <script>
@@ -35,9 +36,9 @@ eleventyExcludeFromCollections: true
     } } };
   </script>
   <script src="https://unpkg.com/decap-cms@^3.9.0/dist/decap-cms.js"></script>
-  <script src="/admin/social-icons.js"></script>
-  <script src="/admin/preview.js"></script>
-  <script src="/admin/admin-tweaks.js"></script>
+  <script src="/admin/social-icons.js?v={{ buildVersion }}"></script>
+  <script src="/admin/preview.js?v={{ buildVersion }}"></script>
+  <script src="/admin/admin-tweaks.js?v={{ buildVersion }}"></script>
   <script>
     CMS.init({ config: {{ demoCmsConfig | dump | replace("</", "<\\/") | safe }} });
   </script>
