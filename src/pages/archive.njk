@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+currentPage: archive
+pageTitle: "Archive — Stonesfield Players"
+metaDescription: "Past productions from the Stonesfield Players, with posters and photos."
+permalink: /archive/
+---
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <p class="section-subtitle">{{ archive.page_header.subtitle }}</p>
+    <h1>{{ archive.page_header.title }}</h1>
+    <p>{{ archive.page_header.description }}</p>
+  </div>
+</section>
+
+<!-- PAST PRODUCTIONS, NEWEST FIRST (edited in the admin under Archive) -->
+<section>
+  <div class="container">
+    <div class="archive-grid">
+      {% for show in archiveShows %}
+      <a href="{{ show.url }}" class="archive-card">
+        <div class="archive-card-image">
+          {% if show.posterImg %}
+            {{ show.posterImg | picture(show.title ~ " poster", "(max-width: 768px) 45vw, 260px") | safe }}
+          {% elif show.photos.length %}
+            {{ show.photos[0].img | picture(show.title, "(max-width: 768px) 45vw, 260px") | safe }}
+          {% else %}
+            <span class="archive-card-blank"><span class="mask">&#127917;</span>Photos coming soon</span>
+          {% endif %}
+        </div>
+        <div class="year">{{ show.date_label }}</div>
+        <h3>{{ show.title }}</h3>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

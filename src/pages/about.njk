@@ -80,17 +80,23 @@ permalink: /about/
     <h2>{{ about.productions_section.heading }}</h2>
   </div>
   <div class="container">
+    <!-- The latest three from the Archive (edited in the admin under Archive) -->
     <div class="productions-grid">
-      {% for prod in about.productions %}
-      <div class="production-card">
-        {% if prod.image %}
-          <img src="{{ prod.image }}" alt="{{ prod.title }}" style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:1.25rem;">
+      {% for show in archiveShows.slice(0, 3) %}
+      <a href="{{ show.url }}" class="production-card production-card-link">
+        {% if show.photos.length %}
+          {{ show.photos[0].img | picture(show.title, "(max-width: 768px) 90vw, 340px", "production-card-image") | safe }}
+        {% elif show.posterImg %}
+          {{ show.posterImg | picture(show.title ~ " poster", "(max-width: 768px) 90vw, 340px", "production-card-image is-poster") | safe }}
         {% endif %}
-        <div class="year">{{ prod.date_label }}</div>
-        <h3>{{ prod.title }}</h3>
-        <p>{{ prod.description }}</p>
-      </div>
+        <div class="year">{{ show.date_label }}</div>
+        <h3>{{ show.title }}</h3>
+        <p>{{ show.description }}</p>
+      </a>
       {% endfor %}
+    </div>
+    <div class="archive-link">
+      <a href="/archive/" class="btn">See the full archive</a>
     </div>
   </div>
 </section>

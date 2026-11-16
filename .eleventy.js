@@ -1,7 +1,12 @@
 const fs = require("fs");
 const yaml = require("js-yaml");
+const { picture, largest } = require("./lib/images");
 
 module.exports = function(eleventyConfig) {
+  // Photos shrunk at build time (see lib/images.js and src/_data/archiveShows.js)
+  eleventyConfig.addFilter("picture", picture);
+  eleventyConfig.addFilter("largest", largest);
+
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });

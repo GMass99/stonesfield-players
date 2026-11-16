@@ -31,6 +31,7 @@ eleventyExcludeFromCollections: true
       "home.json":        { content: JSON.stringify({{ home | dump | replace("</", "<\\/") | safe }}, null, 2) },
       "about.json":       { content: JSON.stringify({{ about | dump | replace("</", "<\\/") | safe }}, null, 2) },
       "events_page.json": { content: JSON.stringify({{ events_page | dump | replace("</", "<\\/") | safe }}, null, 2) },
+      "archive.json":     { content: JSON.stringify({{ archive | dump | replace("</", "<\\/") | safe }}, null, 2) },
       "contact.json":     { content: JSON.stringify({{ contact | dump | replace("</", "<\\/") | safe }}, null, 2) },
       "site.json":        { content: JSON.stringify({{ site | dump | replace("</", "<\\/") | safe }}, null, 2) }
     } } };

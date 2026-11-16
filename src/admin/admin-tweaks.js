@@ -132,6 +132,7 @@ setInterval(function() {
     home:     { entry: 'home',     url: '/' },
     about:    { entry: 'about',    url: '/about/' },
     whats_on: { entry: 'whats_on', url: '/events/' },
+    archive:  { entry: 'archive',  url: '/archive/' },
     contact:  { entry: 'contact',  url: '/contact/' },
     settings: {
       entry: 'site', url: '/', footer: true,
