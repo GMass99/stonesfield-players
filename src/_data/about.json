@@ -1,44 +1,7 @@
 {
-  "page_header": {
-    "subtitle": "Our Story",
-    "title": "About the Players",
-    "description": "Over 70 years of bringing drama to the heart of a small Oxfordshire village."
-  },
-  "intro": {
-    "heading": "A Village Tradition Since 1953",
-    "paragraphs": [
-      "The Stonesfield Players were formed in the village of Stonesfield, near Witney, in 1953. For over seven decades we've been entertaining audiences in West Oxfordshire with productions ranging from Shakespearean classics to original one-act plays, from beloved pantomimes to modern drama.",
-      "Most years there has been at least one production, and they have ranged from farce to Shakespeare, from panto to drama. In more recent years, several of our productions have been written especially for us by members of the Players.",
-      "We perform at <strong>Stonesfield Village Hall</strong> \u2014 a warm, intimate venue that brings audiences right into the heart of the action."
-    ],
-    "image": "",
-    "cta_text": "Get Involved",
-    "cta_url": "/contact/"
-  },
-  "notable_members_section": {
-    "subtitle": "Notable Members",
-    "heading": "Some Familiar Names"
-  },
-  "notable_members": [
-    {
-      "icon": "\ud83c\udfae",
-      "name": "Rupert Friend",
-      "description": "Best known for <em>Homeland</em> and <em>Hitman: Agent 47</em>, Rupert was a member of the Players throughout his teenage years before going on to a stellar film and TV career."
-    },
-    {
-      "icon": "\ud83c\udfac",
-      "name": "Sally Wainwright",
-      "description": "The acclaimed writer and director has been a member of the Players, directing several productions over the years. We even premiered one of her one-act plays in the 1990s."
-    },
-    {
-      "icon": "\ud83c\udfa7",
-      "name": "Becki Sherlaw-Johnson",
-      "description": "Our longest-serving member, Becki joined as a teenager in 1975 and has been a driving force behind the group \u2014 acting, directing and serving as secretary."
-    }
-  ],
-  "timeline_section": {
-    "subtitle": "Through the Years",
-    "heading": "Our History"
+  "productions_section": {
+    "subtitle": "On Stage",
+    "heading": "Past Productions"
   },
   "timeline": [
     {
@@ -49,7 +12,7 @@
     {
       "year": "1975",
       "title": "Growing Membership",
-      "description": "Becki Sherlaw-Johnson joins as a teenager \u2014 she would go on to become the group's longest-serving member."
+      "description": "Becki Sherlaw-Johnson joins as a teenager — she would go on to become the group's longest-serving member."
     },
     {
       "year": "1990s",
@@ -69,12 +32,50 @@
     {
       "year": "2026",
       "title": "Mercy of Sisters",
-      "description": "Our next production \u2014 coming to the Village Hall in late June 2026. Watch this space!"
+      "description": "A comedy-drama debut from our very own Player, Grace Bartle was performed at the Combe Hub June 2026, a sell out success! "
     }
   ],
-  "productions_section": {
-    "subtitle": "On Stage",
-    "heading": "Past Productions"
+  "timeline_section": {
+    "subtitle": "Through the Years",
+    "heading": "Our History"
+  },
+  "notable_members": [
+    {
+      "icon": "🎮",
+      "name": "Rupert Friend",
+      "description": "Best known for <em>Homeland</em> and <em>Hitman: Agent 47</em>, Rupert was a member of the Players throughout his teenage years before going on to a stellar film and TV career."
+    },
+    {
+      "icon": "🎬",
+      "name": "Sally Wainwright",
+      "description": "The acclaimed writer and director has been a member of the Players, directing several productions over the years. We even premiered one of her one-act plays in the 1990s."
+    },
+    {
+      "icon": "🎧",
+      "name": "Becki Sherlaw-Johnson",
+      "description": "Our longest-serving member, Becki joined as a teenager in 1975 and has been a driving force behind the group — acting, directing and serving as secretary."
+    }
+  ],
+  "intro": {
+    "heading": "A Village Tradition Since 1953",
+    "paragraphs": [
+      "The Stonesfield Players were formed in the village of Stonesfield, near Witney, in 1953. For over seven decades we've been entertaining audiences in West Oxfordshire with productions ranging from Shakespearean classics to original one-act plays, from beloved pantomimes to modern drama.",
+      "Most years there has been at least one production, and they have ranged from farce to Shakespeare, from panto to drama. In more recent years, several of our productions have been written especially for us by members of the Players.",
+      "We perform at <strong>Stonesfield Village Hall</strong> — a warm, intimate venue that brings audiences right into the heart of the action."
+    ],
+    "image": "/images/logo.jpg",
+    "cta_text": "Get Involved",
+    "cta_url": "/contact/"
+  },
+  "notable_members_section": {
+    "subtitle": "Notable Members",
+    "heading": "Some Familiar Names"
+  },
+  "cta": {
+    "heading": "Want to Join Us?",
+    "description": "Whether you want to tread the boards, work backstage, or just help out on show nights — we'd love to hear from you.",
+    "button_text": "Get in Touch",
+    "button_url": "/contact/"
   },
   "productions": [
     {
@@ -98,7 +99,7 @@
     {
       "date_label": "Classic Production",
       "title": "Twelfth Night",
-      "description": "Shakespeare's beloved comedy \u2014 one of many classic works the Players have performed over the decades.",
+      "description": "Shakespeare's beloved comedy — one of many classic works the Players have performed over the decades.",
       "image": ""
     },
     {
@@ -112,12 +113,17 @@
       "title": "Original One-Act Play",
       "description": "A world premiere of a one-act play by Sally Wainwright, performed by the Players.",
       "image": ""
+    },
+    {
+      "date_label": "June 2026",
+      "title": "Mercy of Sisters",
+      "description": "A comedy-drama about unpaid caring, intergenerational trauma and family resentments.",
+      "image": "/images/_lybtukg-2-2.jpg"
     }
   ],
-  "cta": {
-    "heading": "Want to Join Us?",
-    "description": "Whether you want to tread the boards, work backstage, or just help out on show nights \u2014 we'd love to hear from you.",
-    "button_text": "Get in Touch",
-    "button_url": "/contact/"
+  "page_header": {
+    "subtitle": "Our Story",
+    "title": "About the Players",
+    "description": "Over 70 years of bringing drama to the heart of a small Oxfordshire village."
   }
 }
